@@ -1,0 +1,17 @@
+{% extends 'admin_base.html' %} <br /><br />
+{% block content %} {% for message in get_flashed_messages() %}
+
+{% endfor %}
+
+<br />
+<div class="card my-4 rounded-4">
+  <form action="/admin_edit_user/{{name_to_edit.id}}" class="card-body cardbody-color p-lg-5 rounded-4" method="POST">
+    {{ form.hidden_tag() }} {{ form.role.label(class="form-label font-weight-bold text-uppercase") }}
+    {{form.role(class="form-control", value=name_to_edit.role)}}
+    <br />
+    {{form.submit(class="btn btn-primary")}}
+  </form>
+</div>
+<br /><br /><br />
+
+{% endblock %}

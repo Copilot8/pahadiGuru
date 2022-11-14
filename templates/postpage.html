@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+  .likebtn{
+    width: 5px;
+    font-size: 3rem;
+    color: #4f92ff;
+  }
+  .likebtn:hover{
+    color: #4f92ff!important;
+  }
+ 
+</style>
+{% endblock %}
+{% block content %}
+
+
+<div class="card mt-5 ml-4 rounded-4" style="width: 75vw;">
+  <div class="card-body rounded-4">
+    <h5 class="card-title font-weight-bold ml-4" style="font-size: 4rem;">{{posts.title|upper}}</h5>
+    
+  </div>
+  <img src="\static\images\kedar.jpg" class="rounded ml-4" width="1000" height="400">
+  <br>
+  <br>
+
+  <div class="d-flex">
+    <div class="flex-shrink-0 ml-4">
+        <img src="\static\images\user.png" class="w-100" width="150" height="100">
+    </div>
+    
+    
+    <div class="flex-grow-1 ml-4  my-4">
+      <h5>{{posts.poster.name}}</h5>
+        <small class="text-muted"><i>Posted on: {{posts.date_added}}</i></small>
+
+    </div>
+  </div>
+  
+  <br>
+
+    <p>{{posts.content|safe}}</p>
+
+    <br>
+    {{posts.likes|length}}
+    <br>
+   
+    {% if current_user.is_authenticated %}
+    
+
+    {% if current_user.id in all_like  %}
+    <a href="{{url_for('like',id=posts.id)}}" class="likebtn"><i class="fa-solid fa-heart"></i></a>
+
+    {% else %}
+    <a href="{{url_for('like',id=posts.id)}}" class="likebtn"><i class="fa-regular fa-heart"></i></a>
+    {% endif %}
+  
+
+    {% else %}
+    <a href="{{url_for('like',id=posts.id)}}" class="likebtn"><i class="fa-solid fa-heart"></i></a>
+    {% endif %}
+    
+    
+
+        
+    
+  </div>
+</div>
+<br>
+
+
+
+
+{% endblock %}
+

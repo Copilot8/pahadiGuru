@@ -1,0 +1,376 @@
+{% extends 'base.html' %} {% block head %}
+
+<style>
+  .img-fluid{
+    display: none;
+  }
+  a {
+    color: inherit;
+  }
+
+  a:hover {
+    color: inherit;
+  }
+</style>
+
+{% endblock %} {% block content %}
+
+
+<br />
+
+
+<!-- uttarakhand history -->
+<div class="container-sm">
+  <div class="news-card-box" >
+    <div class="news-top-bar undefined" style="background: #63d3f8">
+      <div class="news-title-left undefined">
+        <span>UTTARAKHAND HISTORY</span>
+      </div>
+    </div>
+    <div class="news-card-body" >
+      <div class="headline-wrap">
+        <div class="row-cols-1 row-cols-xl-3 row-modify-15 big-card-box row">
+          <div class="col-xl-12">
+            <div class="arousel-item">
+              <a href="#">
+              <div class="headline-box">
+                <div class="headline-left-col">
+                  <div class="headline-pic-box">
+                   <a>
+                      <img
+                      class="w-100" width="200" height="200"
+                        src="https://images.pexels.com/photos/10183991/pexels-photo-10183991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        alt="fcb-stadium-campnau"
+                    />
+                   </a>
+                  </div>
+                </div>
+                <div class="headline-right-col">
+                  <div class="headline-body">
+                    <div class="headline-info">
+                      <div class="series-row">
+                        <label>{{historyPosts[0].title|truncate(30)}}</label>
+                      </div>
+                      <p>
+                        
+                        {{historyPosts[0].content|safe|truncate(700)}}
+                        
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- small cards -->
+        <div class="row-cols-1 row-cols-lg-2 row-cols-md-2 row-modify-15 row">
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      class="w-100"
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[1].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[1].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[2].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[2].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[3].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[3].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[4].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[4].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<!-- end of post -->
+
+<!-- ############################################################################################ -->
+
+<!-- uttarakhand history -->
+<div class="container-sm">
+  <div class="news-card-box" >
+    <div class="news-top-bar undefined" style="background: #eb7cfc">
+      <div class="news-title-left undefined">
+        <span>UTTARAKHAND HISTORY</span>
+      </div>
+    </div>
+    <div class="news-card-body" >
+      <div class="headline-wrap">
+        <div class="row-cols-1 row-cols-xl-3 row-modify-15 big-card-box row">
+          <div class="col-xl-12">
+            <div class="arousel-item">
+              <a href="#">
+              <div class="headline-box">
+                <div class="headline-left-col">
+                  <div class="headline-pic-box">
+                   <a>
+                      <img
+                      class="w-100" width="200" height="200"
+                        src="https://images.pexels.com/photos/10183991/pexels-photo-10183991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        alt="fcb-stadium-campnau"
+                    />
+                   </a>
+                  </div>
+                </div>
+                <div class="headline-right-col">
+                  <div class="headline-body">
+                    <div class="headline-info">
+                      <div class="series-row">
+                        <label>{{historyPosts[3].title|truncate(30)}}</label>
+                      </div>
+                      <p>
+                        
+                        {{historyPosts[3].content|safe|truncate(700)}}
+                        
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- small cards -->
+        <div class="row-cols-1 row-cols-lg-2 row-cols-md-2 row-modify-15 row">
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[0].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[0].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[1].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[1].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[2].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[2].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="headline-box-sm">
+              <div class="headline-left-col">
+                <div class="headline-pic-box">
+                  <a
+                    class="headline-thumb"
+                    ><img
+                      src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="headline-right-col">
+                <div class="headline-body">
+                  <div class="headline-info">
+                    <div class="series-row">
+                      <label>{{historyPosts[1].title|truncate(30)}}</label>
+                    </div>
+                    <p>
+                      
+                      {{historyPosts[1].content|safe|truncate(200)}}
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of post -->
+
+<!-- ############################################################################################ -->
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script>
+  $('p img').addClass('img-fluid');
+
+</script>
+
+
+{% endblock %}

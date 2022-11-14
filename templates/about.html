@@ -1,0 +1,89 @@
+{% extends 'base2.html' %}
+  {% block content %}
+  {% block head %}
+  <style>
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s;
+    font-size: 2rem;
+}
+  </style>
+  {% endblock %}
+
+
+
+  <div class="container py-4">
+      <div class="col-lg-5">
+        <h1 class="display-4  font-weight-bold">About</h1>
+        <p class="lead text-muted">Blog is made to get knowledge about mainly Uttrakhand State as well as of India. </p>
+        </p>
+      </div>
+      <br>
+      <hr>
+      
+      <div class="row mb-4">
+        <div class="col-lg-5">
+          <h1 class="display-4 font-weight-bold">Our team</h1>
+        </div>
+      </div>
+  
+      <div class="row text-center">
+        <!-- Team item-->
+        <div class="col-xl-3 col-sm-6 mb-5">
+          <div class="bg-white rounded-4  py-5 px-4"><img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-400-205577532.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Rahul Bhandari</h5><span class="small text-uppercase text-muted">Founder & Developer</span>
+            <hr>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.instagram.com/rahul_ching" class="social-link"><i class="fa-brands fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+  
+        <!-- Team item-->
+        <div class="col-xl-3 col-sm-6 mb-5">
+          <div class="bg-white rounded-4  py-5 px-4"><img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-400-205577532.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Lakhvinder Singh</h5><span class="small text-uppercase text-muted">Founder & Developer</span>
+            <hr>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.instagram.com/lakhvinder_1203" class="social-link"><i class="fa-brands fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+  
+        <!-- Team item-->
+        <div class="col-xl-3 col-sm-6 mb-5">
+          <div class="bg-white rounded-4  py-5 px-4"><img src="https://img.myloview.com/stickers/default-avatar-profile-icon-vector-social-media-user-photo-400-205577532.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Yuvraj S Bhatiya</h5><span class="small text-uppercase text-muted ">Founder & Developer</span>
+            <hr>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://username.t.me/yvrjbhatiya" class="social-link"><i class="fa-brands fa-telegram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+  
+      </div>
+    </div>
+
+{% endblock %}

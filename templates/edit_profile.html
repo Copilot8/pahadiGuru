@@ -1,0 +1,52 @@
+
+{% extends 'base2.html' %}
+
+{% block head %}
+<style>
+
+.cardbody-color{
+  background-color: #fff;
+}
+
+a{
+  text-decoration: none;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card my-1 rounded-4">
+        <form class="card-body cardbody-color p-lg-5 rounded-4" method="post">
+          <div class="mb-3">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label font-weight-bold text-uppercase") }} 
+            {{form.name(class="form-control my-2",value=user.name)}}
+          </div>
+          <div class="mb-3">
+            {{ form.phone.label(class="form-label font-weight-bold text-uppercase ") }} 
+            {{form.phone(class="form-control my-2",value=user.phone)}}
+          </div>
+          <div class="mb-3">
+            {{ form.email.label(class="form-label font-weight-bold text-uppercase ") }} 
+            {{form.email(class="form-control my-2",value=user.email)}}
+          </div>
+          <div class="mb-3">
+            {{ form.about_author.label(class="form-label font-weight-bold text-uppercase ") }} 
+            {{form.about_author(class="form-control my-2",value=user.about_author)}}
+          </div>
+          <br>
+          <center>
+            {{form.submit(class="btn btn-primary " )}}
+        </center>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+{% endblock %}

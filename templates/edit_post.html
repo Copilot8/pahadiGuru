@@ -1,0 +1,49 @@
+
+{% extends 'base2.html' %}
+
+{% block head %}
+<style>
+
+.cardbody-color{
+  background-color: #fff;
+}
+
+a{
+  text-decoration: none;
+}
+</style>
+{% endblock %}
+{% block content %}
+<br>
+
+<div class="container">
+  <div class="row">
+   
+      <div class="card my-1 rounded-4">
+        <form class="card-body cardbody-color p-lg-5 rounded-4" method="POST">
+          <div class="mb-3">
+            {{ form.hidden_tag() }} 
+            {{ form.title.label(class="form-label font-weight-bold text-uppercase ") }} 
+            {{form.title(class="form-control my-2",placeholder="Title",value=post.title)}}
+          </div>
+          <div class="mb-3">
+            {{ form.category.label(class="form-label font-weight-bold text-uppercase ") }}
+            {{form.category(class="form-control my-2")}}
+          </div>
+          <div class="mb-3">
+            {{ form.content.label(class="form-label font-weight-bold text-uppercase ") }}
+            {{form.content(class="form-control textfieldarea my-2",value=post.content,placeholder="Write here...")}}
+          </div>
+          <br>
+          <center>
+            {{form.submit(class="btn btn-primary" )}}
+        </center>
+        </form>
+      </div>
+    
+  </div>
+</div>
+{{ ckeditor.load() }} {{ ckeditor.config(name='content', toolbar='full') }}
+<br>
+
+{% endblock %}
