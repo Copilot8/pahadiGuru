@@ -1,4 +1,6 @@
 import os
+import uuid as uuid
+from werkzeug.utils import secure_filename
 from datetime import date, datetime
 from unicodedata import category
 
@@ -14,6 +16,9 @@ from form import AddPostForm, LoginForm, UserForm , roleForm, ContactForm , edit
 
 app = Flask(__name__)
 ckeditor = CKEditor(app)
+
+UPLOAD_FOLDER = 'static/images/profile_pic'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 # Add DataBase mysql
@@ -67,10 +72,20 @@ def authors():
 
 @app.route("/home")
 def home():
-    #get latest 5 post
+    #uttarakhand posts
     historyPosts = Posts.query.filter_by(category='Uttarakhand History').order_by(Posts.date_time.desc()).limit(5).all()
-    print(historyPosts)
-    return render_template('home.html', historyPosts=historyPosts)
+    geographyPosts = Posts.query.filter_by(category='Uttarakhand Geography').order_by(Posts.date_time.desc()).limit(5).all()
+    currentsPosts = Posts.query.filter_by(category='Uttarakhand Current').order_by(Posts.date_time.desc()).limit(5).all()
+
+    #India posts
+    IndhistoryPosts = Posts.query.filter_by(category='Indian History').order_by(Posts.date_time.desc()).limit(5).all()
+    IndgeographyPosts = Posts.query.filter_by(category='Indian Geography').order_by(Posts.date_time.desc()).limit(5).all()
+    IndcurrentsPosts = Posts.query.filter_by(category='Indian Current').order_by(Posts.date_time.desc()).limit(5).all()
+
+    #Hindi posts
+    hindiPosts = Posts.query.filter_by(category='Uttarakhand History').order_by(Posts.date_time.desc()).limit(5).all()
+
+    return render_template('home.html', historyPosts=historyPosts, geographyPosts=geographyPosts, currentsPosts=currentsPosts, IndhistoryPosts=IndhistoryPosts, IndgeographyPosts=IndgeographyPosts, IndcurrentsPosts=IndcurrentsPosts, hindiPosts=hindiPosts)
 
 
 ################################################################################
@@ -112,8 +127,8 @@ def edit_post(id):
         post.category = form.category.data
         post.content = form.content.data
         db.session.commit()
-        flash('Post updated successfully')
-        return redirect(url_for('dashboard'))
+        flash('Post updated successfully',category='success')
+        return redirect(url_for('home'))
     elif request.method == 'GET':
         form.title.data = post.title
         form.category.data = post.category
@@ -323,29 +338,36 @@ def edit_profile(id):
     user = Users.query.get(id)
     if request.method == 'POST':
         user.name= form.name.data
-        user.phone= form.phone.data
-        user.email= form.email.data
         user.about_author= form.about_author.data
+        if request.files['profile_pic']:
+            pic = request.files['profile_pic']
+            filename = secure_filename(pic.filename)
+            pic_name = str(uuid.uuid1()) + "_" + filename
+            pic.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+            user.profile_pic = pic_name
+          
+    
         try:
             db.session.commit()
-            return redirect('/dashboard')
+            return redirect(url_for('dashboard'))
         except:
             flash("There was a problem editing that user")
-            return render_template('edit_profile.html', form=form,user=user)
+            return render_template('edit_profile.html', form=form, user=user)
     else:
-        return render_template('edit_profile.html', form=form,user=user)
-    return render_template('edit_profile.html', form=form,user=user)
+        return render_template('edit_profile.html', form=form, user=user)
+
 
 
 ################################################################################
 
 #all post
 
-@app.route("/allposts",methods=['GET','POST'])
-def allposts():
-    posts = Posts.query.all()
+@app.route("/allposts/<string:category>", methods=['GET', 'POST'])
+def allposts(category):
+    posts = Posts.query.filter_by(category=category).all()
     posts.reverse()
-    return render_template('allposts.html',posts=posts)
+    
+    return render_template('allposts.html', posts=posts)
 
 
 ################################################################################
@@ -360,8 +382,8 @@ def postpage(id):
     like=Likes.query.filter_by(post_id=id).all()
     for l in like:
         all_like.append(l.liker_id)
-    
-    return render_template('postpage.html',posts=posts,all_like=all_like)
+    historyPosts = Posts.query.filter_by(category='Uttarakhand History').limit(2).all()
+    return render_template('postpage.html',posts=posts,all_like=all_like,historyPosts=historyPosts)
 
 
 ################################################################################
@@ -486,6 +508,7 @@ class Users(db.Model, UserMixin):
     role = db.Column(db.String(10), default='User')
     posts = db.relationship('Posts', backref='poster')
     likes=db.relationship('Likes',backref='user',passive_deletes=True)
+    profile_pic=db.Column(db.String(), nullable=True)
 
 # ---------------------------------------------------------------------------------------
 

@@ -20,19 +20,14 @@ a{
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card my-1 rounded-4">
-        <form class="card-body cardbody-color p-lg-5 rounded-4" method="post">
+        <form class="card-body cardbody-color p-lg-5 rounded-4" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             {{ form.hidden_tag() }}
+            {{ form.profile_pic.label(class="form-label font-weight-bold text-uppercase") }}
+            {{form.profile_pic(class="form-control my-2")}}
+          <div class="mb-3">  
             {{ form.name.label(class="form-label font-weight-bold text-uppercase") }} 
             {{form.name(class="form-control my-2",value=user.name)}}
-          </div>
-          <div class="mb-3">
-            {{ form.phone.label(class="form-label font-weight-bold text-uppercase ") }} 
-            {{form.phone(class="form-control my-2",value=user.phone)}}
-          </div>
-          <div class="mb-3">
-            {{ form.email.label(class="form-label font-weight-bold text-uppercase ") }} 
-            {{form.email(class="form-control my-2",value=user.email)}}
           </div>
           <div class="mb-3">
             {{ form.about_author.label(class="form-label font-weight-bold text-uppercase ") }} 

@@ -3,7 +3,7 @@ from wsgiref import validate
 
 from flask_wtf import FlaskForm
 from wtforms import (PasswordField, SelectField, StringField, SubmitField,
-                     TextAreaField)
+                     TextAreaField, FileField)
 from wtforms.validators import DataRequired, EqualTo
 
 
@@ -11,7 +11,7 @@ class AddPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     category = SelectField('Category', choices=[('Uttarakhand History'), ('Uttarakhand Geography'),('Uttarakhand Current'),('India History'),('India Geography'),('India Current'),('Hindi')], validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Add Post')
+    submit = SubmitField('Save Post')
 
 
 class LoginForm(FlaskForm):
@@ -52,6 +52,7 @@ class editProfileForm(FlaskForm):
     phone = StringField('Phone', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     about_author = StringField('About', validators=[DataRequired()])
+    profile_pic=FileField('Profile Picture')
     submit = SubmitField('Save Changes')
 
 

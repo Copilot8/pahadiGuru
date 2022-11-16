@@ -35,13 +35,13 @@
             UTTARAKHAND
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts')}}">History</a></li>
+            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='Uttarakhand History')}}">History</a></li>
             <li>
-              <a class="dropdown-item" style="color: #00000080" href="#"
+              <a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='Uttarakhand Geography')}}"
                 >Geography</a
               >
             </li>
-            <li><a class="dropdown-item" style="color: #00000080" href="#">Currents</a></li>
+            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='Uttarakhand Current')}}">Currents</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown pl-4">
@@ -56,13 +56,13 @@
             INDIA
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" style="color: #00000080" href="#">History</a></li>
-            <li><a class="dropdown-item" style="color: #00000080" href="#">Geography</a></li>
-            <li><a class="dropdown-item" style="color: #00000080" href="#">Currents</a></li>
+            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='India History')}}">History</a></li>
+            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='India Geography')}}">Geography</a></li>
+            <li><a class="dropdown-item" style="color: #00000080" href="{{url_for('allposts',category='India Current')}}">Currents</a></li>
           </ul>
         </li>
         <li class="nav-item pl-4">
-          <a class="nav-link" href="{{url_for('dashboard')}}"> हिन्दी</a>
+          <a class="nav-link" href="{{url_for('allposts',category='Hindi')}}"> हिन्दी</a>
       </li>
 
         {% if current_user.is_authenticated %}

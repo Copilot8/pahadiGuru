@@ -1,63 +1,63 @@
 <nav
-class="navbar navbar-expand-lg navbar-light"
-style="background-color: #fff; box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);"
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #fff; box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);"
 >
-  <div class="container-fluid">
-    <a
-      class="navbar-brand"
-      href="{{url_for('home')}}"
-      style="color: #97B2FC; font-weight: bolder; font-size: 25px"
-      >BLOG</a
-    >
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
-        {% if current_user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
-        </li>
-        {% endif %}
-          
-        {% if current_user.is_authenticated and (current_user.role == 'Author' or current_user.role == 'Admin') %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('addpost')}}">Add Post</a>
-        </li>
-        {% endif %}
-
-        {% if current_user.is_authenticated and current_user.role == 'Admin' %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('admin')}}">Admin</a>
-        </li>
-        {% endif %}
-
-        {% if current_user.is_authenticated %}
-        
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-        </li>
-        {% endif %}
-
-        {% if not current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('login')}}">Login</a>
-        </li>
-        {% endif %}
-        
-
-
-      </ul>
+<div class="container-fluid">
+  <a
+    class="navbar-brand"
+    href="{{url_for('home')}}"
+    style="color: #4f92ff; font-weight: bolder; font-size: 25px"
+    >BLOG</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       
-    </div>
+      {% if current_user.is_authenticated %}
+      <li class="nav-item pl-4">
+          <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+      </li>
+      {% endif %}
+        
+      {% if current_user.is_authenticated and (current_user.role == 'Author' or current_user.role == 'Admin') %}
+      <li class="nav-item pl-4">
+        <a class="nav-link" href="{{url_for('addpost')}}">Add Post</a>
+      </li>
+      {% endif %}
+
+      {% if current_user.is_authenticated and current_user.role == 'Admin' %}
+      <li class="nav-item pl-4">
+        <a class="nav-link" href="{{url_for('admin')}}">Admin</a>
+      </li>
+      {% endif %}
+
+      {% if current_user.is_authenticated %}
+      
+      <li class="nav-item pl-4">
+        <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+      </li>
+      {% endif %}
+
+      {% if not current_user.is_authenticated %}
+      <li class="nav-item pl-4">
+        <a class="nav-link" href="{{url_for('login')}}">Login</a>
+      </li>
+      {% endif %}
+      
+
+
+    </ul>
+    
   </div>
+</div>
 </nav>
