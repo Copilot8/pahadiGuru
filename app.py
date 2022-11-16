@@ -75,17 +75,16 @@ def home():
     #uttarakhand posts
     historyPosts = Posts.query.filter_by(category='Uttarakhand History').order_by(Posts.date_time.desc()).limit(5).all()
     geographyPosts = Posts.query.filter_by(category='Uttarakhand Geography').order_by(Posts.date_time.desc()).limit(5).all()
-    currentsPosts = Posts.query.filter_by(category='Uttarakhand Current').order_by(Posts.date_time.desc()).limit(5).all()
+    currentPosts = Posts.query.filter_by(category='Uttarakhand Current').order_by(Posts.date_time.desc()).limit(5).all()
 
     #India posts
-    IndhistoryPosts = Posts.query.filter_by(category='Indian History').order_by(Posts.date_time.desc()).limit(5).all()
-    IndgeographyPosts = Posts.query.filter_by(category='Indian Geography').order_by(Posts.date_time.desc()).limit(5).all()
-    IndcurrentsPosts = Posts.query.filter_by(category='Indian Current').order_by(Posts.date_time.desc()).limit(5).all()
+    IndhistoryPosts = Posts.query.filter_by(category='India History').order_by(Posts.date_time.desc()).limit(5).all()
+    IndgeographyPosts = Posts.query.filter_by(category='India Geography').order_by(Posts.date_time.desc()).limit(5).all()
+    IndcurrentsPosts = Posts.query.filter_by(category='India Current').order_by(Posts.date_time.desc()).limit(5).all()
 
-    #Hindi posts
-    hindiPosts = Posts.query.filter_by(category='Uttarakhand History').order_by(Posts.date_time.desc()).limit(5).all()
+    
 
-    return render_template('home.html', historyPosts=historyPosts, geographyPosts=geographyPosts, currentsPosts=currentsPosts, IndhistoryPosts=IndhistoryPosts, IndgeographyPosts=IndgeographyPosts, IndcurrentsPosts=IndcurrentsPosts, hindiPosts=hindiPosts)
+    return render_template('home.html', historyPosts=historyPosts, geographyPosts=geographyPosts, currentPosts=currentPosts, IndhistoryPosts=IndhistoryPosts, IndgeographyPosts=IndgeographyPosts, IndcurrentsPosts=IndcurrentsPosts)
 
 
 ################################################################################
@@ -380,8 +379,8 @@ def postpage(id):
     posts = Posts.query.filter_by(id=id).first()
     # like=Likes.query.filter_by(post_id=id).all()
     like=Likes.query.filter_by(post_id=id).all()
-    for l in like:
-        all_like.append(l.liker_id)
+    for i in like:
+        all_like.append(i.liker_id)
     historyPosts = Posts.query.filter_by(category='Uttarakhand History').limit(2).all()
     return render_template('postpage.html',posts=posts,all_like=all_like,historyPosts=historyPosts)
 

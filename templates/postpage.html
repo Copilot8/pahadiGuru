@@ -61,15 +61,15 @@
    <p style="margin-left: 86%;">
     <a style="font-size: 2rem; box-sizing: border-box;">{{posts.likes|length}}</a>
       {% if current_user.is_authenticated %}
-      {% if current_user.id in all_like  %}
-      <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-solid fa-heart"></i></a>
+        {% if current_user.id in all_like  %}
+        <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-solid fa-heart"></i></a>
 
-      {% else %}
-      <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-regular fa-heart"></i></a>
-      {% endif %}
+        {% else %}
+        <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-regular fa-heart"></i></a>
+        {% endif %}
     
       {% else %}
-      <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-solid fa-heart"></i></a>
+      <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-regular fa-heart"></i></a>
       {% endif %}
     
       <!-- <a class="viewbtn ml-2" ><i class="fa-solid fa-eye"></i></a>
@@ -82,81 +82,8 @@
           
   </div>
   
-  <div class="card mt-5 ml-4 rounded-4">
-    <div class="news-card-box" >
-      <div class="news-top-bar undefined rounded-4" style="background: #63d3f8">
-        <div class="news-title-left undefined" style="height: 2vh;">
-          <span>Other Posts</span>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="col">
-      <div class="headline-box-sm">
-        <a href="" >
-        <div class="headline-left-col">
-          <div class="headline-pic-box">
-            <a
-              class="headline-thumb"
-              ><img
-                class="w-100" width="200" height="200"
-                src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              />
-            </a>
-          </div>
-        </div>
-        <div class="headline-right-col">
-          <div class="headline-body">
-            <div class="headline-info">
-              <div class="series-row">
-                <label>{{post.title}}</label>
-              </div>
-              <p>
-                
-                {{post.content|safe|truncate(200)}}
-                
-              </p>
-            </div>
-          </div>
-        </div>
-      </a>
-      </div>
-    </div>
-    
-   
-    <div class="col">
-      <div class="headline-box-sm">
-        <a href="">
-        <div class="headline-left-col">
-          <div class="headline-pic-box">
-            <a
-              class="headline-thumb"
-              ><img
-                src="https://images.pexels.com/photos/10225549/pexels-photo-10225549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              />
-            </a>
-          </div>
-        </div>
-        <div class="headline-right-col">
-          <div class="headline-body">
-            <div class="headline-info">
-              <div class="series-row">
-                <label>{{post.title}}</label>
-              </div>
-              <p>
-                
-                {{post.content|safe|truncate(200)}}
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        </a>
-      </div>
-    </div>
-  </div>
-  </a>
+  
+  
 
 <br>
 
