@@ -62,8 +62,13 @@
           </ul>
         </li>
         <li class="nav-item pl-4">
-          <a class="nav-link" href="{{url_for('allposts',category='Hindi')}}"> हिन्दी</a>
+          <a class="nav-link" href="{{url_for('allposts',category='Computer')}}"> COMPUTER</a>
       </li>
+        <li class="nav-item pl-4">
+          <a class="nav-link" href="{{url_for('allposts',category='Hindi')}}"> HINDI</a>
+      </li>
+        
+      
 
         {% if current_user.is_authenticated %}
         <li class="nav-item pl-4">
@@ -84,34 +89,37 @@
         </li>
         {% endif %}
 
+        
+        
+
+      </ul>
+        <form class="searchbar pr-4">
+          <input
+            type="search"
+            placeholder="Search here"
+            name="search"
+            class="searchbar-input"
+            onkeyup="buttonUp();"
+            required
+          />
+          <input type="submit" class="searchbar-submit" value=""/>
+          <span class="searchbar-icon pr-4"
+            ><i class="fa fa-search" aria-hidden="true" style="color: #00000080;"></i
+          ></span>
+        </form>
+
         {% if current_user.is_authenticated %}
-        <li class="nav-item pl-4">
+        <li class="nav-item pl-4" style="text-align: center; list-style: none;  margin-right: 5px;">
           <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
         </li>
         {% endif %}
 
         {% if not current_user.is_authenticated %}
-        <li class="nav-item pl-4">
+        <li class="nav-item pl-4" style="text-align: center; list-style: none; margin-right: 5px;">
           <a class="nav-link" href="{{url_for('login')}}">Login</a>
         </li>
         {% endif %}
-        
 
-      </ul>
-      <form class="searchbar pr-4">
-        <input
-          type="search"
-          placeholder="Search here"
-          name="search"
-          class="searchbar-input"
-          onkeyup="buttonUp();"
-          required
-        />
-        <input type="submit" class="searchbar-submit" value=""/>
-        <span class="searchbar-icon pr-4"
-          ><i class="fa fa-search" aria-hidden="true" style="color: #00000080;"></i
-        ></span>
-      </form>
     </div>
   </div>
 </nav>

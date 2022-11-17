@@ -57,30 +57,37 @@
     <p style="margin: 0 2rem!important;">{{posts.content|safe}}</p>
 
     <br>
-    
-   <p style="margin-left: 86%;">
-    <a style="font-size: 2rem; box-sizing: border-box;">{{posts.likes|length}}</a>
-      {% if current_user.is_authenticated %}
-        {% if current_user.id in all_like  %}
-        <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-solid fa-heart"></i></a>
 
-        {% else %}
-        <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-regular fa-heart"></i></a>
-        {% endif %}
-    
-      {% else %}
-      <a href="{{url_for('like',id=posts.id)}}" class="likebtn ml-2"><i class="fa-regular fa-heart"></i></a>
-      {% endif %}
-    
-      <!-- <a class="viewbtn ml-2" ><i class="fa-solid fa-eye"></i></a>
 
-      <a class="sharebtn ml-2" ><i class="fa-solid fa-share-nodes"></i></a> -->
-
-      
-    </p>
     
+    
+    <div style="display: flex; align-items: center; justify-content: right; float: right; padding-right: 10px;" >
+    
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <a style="color: #4f92ff;" ><i style="font-size: x-large; padding: 0;" class="fa fa-eye"></i></a>
+            <span style="padding: 0.5rem;">{{view_count}}</span>
+
+          </div>
+
+    
+          <div style="display: flex; align-items: center; justify-content: center;">
+            {% if current_user.is_authenticated %}
+              {% if current_user.id in all_like  %}
+              <a href="{{url_for('like',id=posts.id)}}"><i style="font-size: x-large; padding: 0;" class="fa-solid fa-heart"></i></a>
+
+              {% else %}
+              <a href="{{url_for('like',id=posts.id)}}"><i style="font-size: x-large; padding: 0;" class="fa-regular fa-heart"></i></a>
+              {% endif %}
           
-  </div>
+            {% else %}
+            <a href="{{url_for('like',id=posts.id)}}"><i style="font-size: x-large; padding: 0;" class="fa-regular fa-heart"></i></a>
+            {% endif %} 
+            <span style="padding: 0.5rem;">{{posts.likes|length}}</span>
+          
+          </div>
+    </div>
+    
+
   
   
   
@@ -96,4 +103,5 @@
 
 
 {% endblock %}
-
+<!-- view_count -->
+<!-- posts.likes|length -->

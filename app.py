@@ -82,8 +82,6 @@ def home():
     IndgeographyPosts = Posts.query.filter_by(category='India Geography').order_by(Posts.date_time.desc()).limit(5).all()
     IndcurrentsPosts = Posts.query.filter_by(category='India Current').order_by(Posts.date_time.desc()).limit(5).all()
 
-    
-
     return render_template('home.html', historyPosts=historyPosts, geographyPosts=geographyPosts, currentPosts=currentPosts, IndhistoryPosts=IndhistoryPosts, IndgeographyPosts=IndgeographyPosts, IndcurrentsPosts=IndcurrentsPosts)
 
 
@@ -226,8 +224,38 @@ def logout():
 @login_required
 def dashboard():
     post = Posts.query.filter_by(poster_id=current_user.id).all()
-    print(post)
-    return render_template('dashboard.html',current_user=current_user,post=post)
+
+    total_posts=Posts.query.filter_by(poster_id=current_user.id).count()
+    
+
+    total_views = 0
+    for p in post:
+        for v in p.views:
+            total_views += v.view_count
+
+
+    
+    # posts
+    # poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # likes=db.relationship('Likes',backref='post',passive_deletes=True)
+    # views=db.relationship('Views',backref='post',passive_deletes=True)
+
+    # likes
+    # id=db.Column(db.Integer,primary_key=True)
+    # date_liked=db.Column(db.DateTime, default=datetime.utcnow)
+    # liker_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
+    # post_id=db.Column(db.Integer,db.ForeignKey('posts.id'),nullable=True)
+
+    total_likes = 0
+    for p in post:
+        for l in p.likes:
+            total_likes += 1
+        
+
+
+    
+
+    return render_template('dashboard.html',post=post,total_posts=total_posts,total_views=total_views,total_likes=total_likes)
 
 
 ################################################################################
@@ -375,14 +403,33 @@ def allposts(category):
 
 @app.route("/postpage/<int:id>")
 def postpage(id):
+
+
+
     all_like=[]
     posts = Posts.query.filter_by(id=id).first()
     # like=Likes.query.filter_by(post_id=id).all()
     like=Likes.query.filter_by(post_id=id).all()
     for i in like:
         all_like.append(i.liker_id)
-    historyPosts = Posts.query.filter_by(category='Uttarakhand History').limit(2).all()
-    return render_template('postpage.html',posts=posts,all_like=all_like,historyPosts=historyPosts)
+
+
+
+    # count views
+    views = Views.query.filter_by(post_id=id).first()
+    if views:
+        views.view_count += 1
+        db.session.commit()
+    else:
+        views = Views(post_id=id, view_count=1)
+        db.session.add(views)
+        db.session.commit()
+
+    # views
+    views = Views.query.filter_by(post_id=id).first()
+    view_count = views.view_count
+
+    return render_template('postpage.html',posts=posts,all_like=all_like,view_count=view_count)
 
 
 ################################################################################
@@ -488,6 +535,7 @@ class Posts(db.Model):
     date_time = db.Column(db.DateTime, default=datetime.utcnow)
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     likes=db.relationship('Likes',backref='post',passive_deletes=True)
+    views=db.relationship('Views',backref='post',passive_deletes=True)
 
 # ---------------------------------------------------------------------------------------
 
@@ -530,6 +578,17 @@ class Likes(db.Model):
     date_liked=db.Column(db.DateTime, default=datetime.utcnow)
     liker_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
     post_id=db.Column(db.Integer,db.ForeignKey('posts.id'),nullable=True)
+    
+
+
+
+class Views(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    date_viewed=db.Column(db.DateTime, default=datetime.utcnow)
+    view_count = db.Column(db.Integer, default=0)
+    post_id=db.Column(db.Integer,db.ForeignKey('posts.id'),nullable=True)
+
+
 
 
 if __name__ == "__main__":

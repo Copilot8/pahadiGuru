@@ -22,10 +22,10 @@
                 <div class="col rounded-4">
                     {% if current_user.profile_pic %}
                     <img src="{{url_for('static', filename='images/profile_pic/'+ current_user.profile_pic)}}" width="200"
-                         class="rounded-2" style=" min-width: 12rem;">
+                         class="rounded-2" style=" min-width: 12rem; margin-left: 3.2rem;">
 
                     {% else %}
-                    <img src="{{url_for('static', filename='images/profile_pic/user.png')}}" class="rounded-2" width="200" style=" min-width: 12rem;">
+                    <img src="{{url_for('static', filename='images/profile_pic/user.png')}}" class="rounded-2" width="200" style=" min-width: 12rem; margin-left: 3.2rem;">
                     {% endif %}
                 </div>
 
@@ -39,15 +39,15 @@
                                     
                                     <div class="col">
                                         <i class="fa-solid fa-file-pen"></i>
-                                        <p>1256</p>
+                                        <p>{{total_posts}}</p>
                                     </div>
                                     <div class="col">
                                         <i class="fa-solid fa-heart"></i>
-                                        <p>8562</p>
+                                        <p>{{total_likes}}</p>
                                     </div>
                                     <div class="col">
                                         <i class="fa-solid fa-eye"></i>
-                                        <p>189</p>
+                                        <p>{{total_views}}</p>
                                     </div>
                                 </div>
                            
@@ -60,7 +60,7 @@
 
 
                 <div class="col"  style="min-width: 14.125rem;" >
-                    <strong style="font-size: 1.5rem; color: #97B2FC;">{{current_user.name | upper}}</strong>
+                    <strong style="font-size: 1rem; color: #97B2FC;">{{current_user.name | upper}}</strong>
                     <br>
 
                     <strong>Username:</strong>
