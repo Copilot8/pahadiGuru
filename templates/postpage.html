@@ -1,30 +1,11 @@
 {% extends 'base.html' %}
 {% block head %}
 <style>
-  .likebtn{
-    width: 5px;
-    font-size: 3rem;
-    color: #4f92ff;
-    display: inline-block;
+  #post_content{
+    padding: 17px;
+    font-size: 1.7rem;
+    text-align: justify; 
   }
-  .viewbtn{
-    width: 5px;
-    font-size: 3rem;
-    color: #4f92ff;
-  }
-  .sharebtn{
-    width: 5px;
-    font-size: 3rem;
-    color: #4f92ff;
-  }
-  .likebtn:hover{
-    color: #4f92ff!important;
-  }
-  .posttxt{
-    margin-left: 2px;
-  }
-
- 
 </style>
 {% endblock %}
 {% block content %}
@@ -54,7 +35,7 @@
   
   <br>
 
-    <p style="margin: 0 2rem!important;">{{posts.content|safe}}</p>
+    <div id="post_content">{{posts.content|safe}}</div>
 
     <br>
 

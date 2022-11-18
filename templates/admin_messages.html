@@ -1,0 +1,51 @@
+{% extends 'base2.html' %}
+{% block head %}
+    <style>
+        
+    </style>
+{% endblock %}
+{% block content %}
+<br>
+<div class="card rounded-4">
+    <div class="card-header rounded-4" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+        <h1 class="text-uppercase font-weight-bold text-center">Messages</h1>
+        </div>
+    </div>
+    
+    <div class="card-body rounded-4">
+       
+        <div class="container">
+            <div class="row">
+                <div class="col rounded-4"  style="min-width: 14.125rem;" >
+                    <table class="table table-success table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for msg in msg %}
+                                <tr>
+                                    <td>{{ msg.name }}</td>
+                                    <td>{{ msg.email }}</td>
+                                    <td>{{ msg.message|truncate(50) }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>     
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br><br>
+
+
+
+
+{% endblock %}

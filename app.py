@@ -181,7 +181,7 @@ def login():
                 if user.role == 'Admin':
                     role = 'Admin'
                     login_user(user)
-                    return redirect(url_for('admin',role=role))
+                    return redirect(url_for('home',role=role))
                 
                 if user.role == 'Author':
                     role='Author'
@@ -226,57 +226,90 @@ def dashboard():
     post = Posts.query.filter_by(poster_id=current_user.id).all()
 
     total_posts=Posts.query.filter_by(poster_id=current_user.id).count()
-    
 
     total_views = 0
     for p in post:
         for v in p.views:
             total_views += v.view_count
 
-
-    
-    # posts
-    # poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # likes=db.relationship('Likes',backref='post',passive_deletes=True)
-    # views=db.relationship('Views',backref='post',passive_deletes=True)
-
-    # likes
-    # id=db.Column(db.Integer,primary_key=True)
-    # date_liked=db.Column(db.DateTime, default=datetime.utcnow)
-    # liker_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
-    # post_id=db.Column(db.Integer,db.ForeignKey('posts.id'),nullable=True)
-
     total_likes = 0
     for p in post:
         for l in p.likes:
             total_likes += 1
-        
-
-
-    
 
     return render_template('dashboard.html',post=post,total_posts=total_posts,total_views=total_views,total_likes=total_likes)
 
 
 ################################################################################
 
-#adming page
+#all users
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin_all_users', methods=['GET', 'POST'])
 @login_required
-def admin():
-    id = current_user.id
-    if id == 1 or current_user.role == 'Admin':
-        users = Users.query.all()
-        posts = Posts.query.all()
-        msg = Contact.query.all()
-        return render_template('admin.html', users=users, posts=posts, msg=msg)
-    else:
-        flash("You are not admin")
-        return redirect(url_for('home'))
+def admin_all_users():
+    users = Users.query.all()
+    return render_template('admin_all_users.html',users=users)
+
+################################################################################
+
+
+
+
+
+#admin messages
+
+@app.route('/admin_messages', methods=['GET', 'POST'])
+@login_required
+def admin_messages():
+    messages = Contact.query.all()
+    return render_template('admin_messages.html',messages=messages)
+
+
+##############################################################################
+
+
+
+#all_posts
+
+@app.route('/admin_all_posts', methods=['GET', 'POST'])
+@login_required
+def admin_all_posts():
+    posts = Posts.query.all()
+    return render_template('admin_all_posts.html',posts=posts)
 
 
 ################################################################################
+
+
+#your posts
+
+
+@app.route('/your_posts', methods=['GET', 'POST'])
+@login_required
+def your_posts():
+    posts = Posts.query.filter_by(poster_id=current_user.id).all()
+    return render_template('your_posts.html',posts=posts)
+
+
+
+
+# #adming page
+
+# @app.route('/admin', methods=['GET', 'POST'])
+# @login_required
+# def admin():
+#     id = current_user.id
+#     if id == 1 or current_user.role == 'Admin':
+#         users = Users.query.all()
+#         posts = Posts.query.all()
+#         msg = Contact.query.all()
+#         return render_template('admin.html', users=users, posts=posts, msg=msg)
+#     else:
+#         flash("You are not admin")
+#         return redirect(url_for('home'))
+
+
+# ################################################################################
 
 #delete post
 
