@@ -6,16 +6,16 @@
 {% endblock %}
 {% block content %}
 
-
 <br>
+<br>
+
 <div class="card rounded-4">
     <div class="card-header rounded-4" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
         <h1 class="text-uppercase font-weight-bold text-center">Profile</h1>
         </div>
         <div>
-        <a href="{{url_for('edit_profile',id=current_user.id)}}" class="btn btn-outline-info btn-sm font-weight-bold"><i>Edit</i></a>
-        <a href="{{ url_for('logout')}}" class="btn btn-outline-danger btn-sm font-weight-bold">Logout</a>
+        <a href="{{url_for('edit_profile',id=current_user.id)}}" class="btn btn-outline-info btn-sm font-weight-bold" style="font-size: 1.3rem;"><i>Edit Profile</i></a>
         </div>
     </div>
     
@@ -26,10 +26,10 @@
                 <div class="col rounded-4">
                     {% if current_user.profile_pic %}
                     <img src="{{url_for('static', filename='images/profile_pic/'+ current_user.profile_pic)}}" 
-                         class="rounded-2" style=" width: 200px; height: 230px; margin-left: 20%; ">
+                         class="rounded-2" style=" width: 200px; height: 200px;">
 
                     {% else %}
-                    <img src="{{url_for('static', filename='images/profile_pic/user.png')}}" class="rounded-2" width="200" style=" min-width: 12rem; margin-left: 1.5rem;">
+                    <img src="{{url_for('static', filename='images/profile_pic/user.jpg')}}" class="rounded-2" width="200" style=" min-width: 12rem;">
                     {% endif %}
                 </div>
 
@@ -39,7 +39,7 @@
 
                         
                             
-                                <div class="row text-center" style="margin: auto; margin-top: 17%;">
+                                <div class="row text-center" style="margin: auto; margin-top: 21%;">
                                     
                                     <div class="col">
                                         <i class="fa-solid fa-file-pen"></i>
@@ -63,24 +63,25 @@
 
 
 
-                <div class="col"  style="min-width: 14.125rem;" >
-                    <strong style="font-size: 1rem; color: #97B2FC;">{{current_user.name | upper}}</strong>
+                <div class="col mt-4"  style="min-width: 14.125rem;" >
+                    <strong style="font-size: 2.2rem; color: #4f92ff;">{{current_user.name | upper}}</strong>
                     <br>
+                    
 
-                    <strong>Username:</strong>
+                    <strong class="ml-2">Username:</strong>
                     {{current_user.username}}<br>
                     
-                    <strong>Mobile:</strong>
+                    <strong class="ml-2">Mobile:</strong>
                     {{current_user.phone}}<br>
 
-                    <strong>Email:</strong>
+                    <strong class="ml-2">Email:</strong>
                     {{current_user.email}}<br>
 
 
-                    <strong>About:</strong>
+                    <strong class="ml-2">About:</strong>
                     {{current_user.about_author}}<br>
 
-                    <strong>Date Joined:</strong>
+                    <strong class="ml-2">Date Joined:</strong>
                     {{current_user.date_added}}<br>
                     </p>
 
@@ -103,22 +104,22 @@
     <div class="container">
         <div class="row">
             {% if current_user.is_authenticated and (current_user.role=='Author' or current_user.role=='Admin') %}
-            <div class="col" style="max-width: 25%; font-size: 1rem; background-color: cyan; padding: 0; text-align: center; padding: 30px 0; ">
+            <div class=" card col rounded-4" style="max-width: 25%; font-size: 1.5rem; background-color: #bdd6ff;  text-align: center; padding: 30px 0; ">
                 <a style="color: black;" href="{{url_for('your_posts',id=current_user.id)}}">Your Posts</a>
             </div>
             {% endif %}
-
+                    
             {% if current_user.is_authenticated and (current_user.role=='Admin') %}
             
-            <div class="col" style="max-width: 25%; font-size: 1rem; background-color: orange; padding: 0; text-align: center; padding: 30px 0; ">
+            <div class="card col rounded-4" style="max-width: 25%; font-size: 1.5rem; background-color: #bdd6ff;  text-align: center; padding: 30px 0; margin-left: 10px;">
                 <a style="color: black;" href="{{url_for('admin_all_users')}}">Users</a>
             </div>
 
-            <div class="col" style="max-width: 25%; font-size: 1rem; background-color: rgb(242, 0, 255); padding: 0; text-align: center; padding: 30px 0; ">
+            <div class="card col rounded-4" style="max-width: 25%; font-size: 1.5rem; background-color: #bdd6ff;  text-align: center; padding: 30px 0; margin-left: 10px; ">
                 <a style="color: black;" href="{{url_for('admin_all_posts')}}">All Posts</a>
             </div>
 
-            <div class="col" style="max-width: 25%; font-size: 1rem; background-color: greenyellow; padding: 0; text-align: center; padding: 30px 0; ">
+            <div class="card col rounded-4" style="max-width: 25%; font-size: 1.5rem; background-color: #bdd6ff;  text-align: center; padding: 30px 0; margin-left: 10px; ">
                 <a style="color: black;" href="{{url_for('admin_messages')}}">Messages</a>
             </div>
 

@@ -3,7 +3,8 @@
 
 {% endfor %}
 
-<br />
+<br /><br>
+
 <div class="card my-4 rounded-4">
   <form action="/admin_edit_user/{{name_to_edit.id}}" class="card-body cardbody-color p-lg-5 rounded-4" method="POST">
     {{ form.hidden_tag() }} {{ form.role.label(class="form-label font-weight-bold text-uppercase") }}
@@ -13,5 +14,6 @@
   </form>
 </div>
 <br />
+<br>
 
 {% endblock %}

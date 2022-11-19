@@ -16,6 +16,7 @@ a{
 {% endblock %}
 {% block content %}
 <br>
+<br>
 
 <div class="container">
   <div class="row">
@@ -44,8 +45,9 @@ a{
     
   </div>
 </div>
-<br>
-{{ ckeditor.load() }} {{ ckeditor.config(name='content', toolbar='full') }}
 
+{{ ckeditor.load() }} {{ ckeditor.config(name='content', toolbar='full') }}
+<br>
+<br>
 
 {% endblock %}
