@@ -1,0 +1,43 @@
+<div class="headline-box">
+  <div class="headline-left-col">
+    <div class="headline-pic-box">
+      <a
+        class="headline-thumb"
+        href="{{url_for('postpage',id=historyPosts[0].id)}}"
+        ><img
+        src="https://images.pexels.com/photos/10183991/pexels-photo-10183991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="fcb-stadium-campnau"
+      /></a>
+    </div>
+  </div>
+  <div class="headline-right-col">
+    <div class="headline-body">
+      <div class="headline-info">
+        <div class="series-row"><label>{{historyPosts[1].title|truncate(20)}}</label></div>
+        <h3>
+          <a
+            href="{{url_for('postpage',id=historyPosts[0].id)}}"
+            >{{historyPosts[1].content|safe|truncate(500)}}
+          </a>
+        </h3>
+      </div>
+    </div>
+    <ul class="headline-footer">
+      <li>
+        <div><span class="pre-span text-muted">Posted on: {{historyPosts[1].date_added}}</span></div>
+      </li>
+      <li class="like-item">
+        <div><i class="fa-solid fa-heart px-1" style="font-weight: 500"></i></div>
+        <div>
+          <i
+            class="fa-regular fa-share-nodes" px-1"
+            role="button"
+            aria-label="Share Button"
+            style="font-weight: 600"
+          ></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="sc-hLBbgP hjrBgz"></div>
+</div>

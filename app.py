@@ -72,6 +72,15 @@ def authors():
 
 @app.route("/home")
 def home():
+
+    # all_like=[]
+    # all_posts = Posts.query.all()
+    # for post in all_posts:
+    #     for like in post.likes:
+    #         all_like.append(like.liker_id)
+    # print(all_like)
+    
+
     #uttarakhand posts
     historyPosts = Posts.query.filter_by(category='Uttarakhand History').order_by(Posts.date_time.desc()).limit(5).all()
     geographyPosts = Posts.query.filter_by(category='Uttarakhand Geography').order_by(Posts.date_time.desc()).limit(5).all()
@@ -548,7 +557,26 @@ def resetpassword():
 ################################################################################
 
 
+#Likes from homepage 
 
+# @app.route('/likehomepage/<int:id>', methods=["GET","POST"])
+# @login_required
+# def likehomepage(id):
+
+#     post=Posts.query.filter_by(id=id).first()
+#     like=Likes.query.filter_by(liker_id=current_user.id,post_id=post.id).first()
+#     if like:
+#         db.session.delete(like)
+#         db.session.commit()
+#         return redirect(url_for('home'))
+#     else:
+#         new_like=Likes(liker_id=current_user.id,post_id=post.id)
+#         db.session.add(new_like)
+#         db.session.commit()
+#         return redirect(url_for('home'))
+
+
+################################################################################
 
 
 

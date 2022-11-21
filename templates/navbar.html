@@ -4,13 +4,13 @@
 >
   <div class="container-fluid">
     <a
-      class="navbar-brand"
+      class="navbar-brand pl-3"
       href="{{url_for('home')}}"
-      style="color: #4f92ff; font-weight: bolder; font-size: 25px"
+      style="color: #4f92ff; font-weight: 600; font-size: 25px"
       >pahadiGURU</a
     >
     <button
-      class="navbar-toggler"
+      class="navbar-toggler mr-4"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -18,7 +18,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon" ></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -88,7 +88,7 @@
         
 
       </ul>
-        <form class="searchbar pr-4">
+        <form class="searchbar pr-2">
           <input
             type="search"
             placeholder="Search here"
@@ -104,13 +104,13 @@
         </form>
 
         {% if current_user.is_authenticated %}
-        <li class="nav-item pl-4" style="text-align: center; list-style: none;  margin-right: 5px;">
+        <li class="nav-item pl-2" style="text-align: center; list-style: none;  margin-right: 15px;">
           <a class="nav-link" href="{{url_for('logout')}}" style="color: #00000080;" >Logout</a>
         </li>
         {% endif %}
 
         {% if not current_user.is_authenticated %}
-        <li class="nav-item pl-4" style="text-align: center; list-style: none; margin-right: 5px;">
+        <li class="nav-item pl-2" style="text-align: center; list-style: none; margin-right: 15px;">
           <a class="nav-link" href="{{url_for('login')}}" style="color: #00000080;" >Login</a>
         </li>
         {% endif %}
