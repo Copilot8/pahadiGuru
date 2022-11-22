@@ -329,10 +329,10 @@ def delete_post(id):
     try:
         db.session.delete(post_to_delete)
         db.session.commit()
-        return redirect('/admin')
+        return redirect('/dashboard')
     except:
         flash("There was a problem deleting that post")
-        return redirect('/admin')
+        return redirect('/dashboard')
 
 
 ################################################################################
