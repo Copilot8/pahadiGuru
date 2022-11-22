@@ -19,9 +19,16 @@
   margin-bottom: 10px;
   background-color: #FFFFFF;
   color: #000000;
+  
 }
 a.btn, a.btn:visited {
   color: #333333;
+}
+h1,h2,h3,h4,h5,h6,p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -42,8 +49,10 @@ a.btn, a.btn:visited {
     			<div class="col-md-8">
     				<div class="card-block">
     					<h6 class="card-title" style="font-size: 2rem; font-weight: 600;">{{post.title}}</h6>
+              <div class="content_txt">
     					<p class="card-text text-justify">{{post.content|safe|truncate(500)}}</p>
-    					<a href="{{url_for('postpage',id=post.id)}}" class="btn btn-primary float-end my-2" style=" color: white;">read more...</a>
+              </div>
+              <a href="{{url_for('postpage',id=post.id)}}" class="btn btn-primary float-end my-2" style=" color: white;">read more...</a>
     				</div>
     			</div>
     		</div>
@@ -55,6 +64,7 @@ a.btn, a.btn:visited {
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script>
   $('p img').addClass('img-fluid');
+
 
 </script>
 
