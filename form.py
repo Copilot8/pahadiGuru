@@ -9,6 +9,7 @@ class AddPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     category = SelectField('Category', choices=[('Uttarakhand History'), ('Uttarakhand Geography'),('Uttarakhand Current'),('India History'),('India Geography'),('India Current'),('Hindi'),('Computer')], validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
+    image = FileField('Feature Photo')
     submit = SubmitField('Save Post')
 
 

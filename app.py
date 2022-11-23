@@ -20,6 +20,9 @@ ckeditor = CKEditor(app)
 UPLOAD_FOLDER = 'static/images/profile_pic'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+UPLOAD_FOLDER2 = 'static/images/feature_photo'
+app.config['UPLOAD_FOLDER2'] = UPLOAD_FOLDER2
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 # Add DataBase mysql
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql://username:password@localhost/db_name'
@@ -106,17 +109,33 @@ def addpost():
         category = form.category.data
         content = form.content.data
         poster = current_user.id
-        post = Posts(title=title, category=category,
-                    content=content, poster_id=poster)
-        print(post)
+        if request.files['image']:
+            image = request.files['image']
+            filename = secure_filename(image.filename)
+            image_name = str(uuid.uuid1()) + "_" + filename
+            image.save(os.path.join(app.config['UPLOAD_FOLDER2'], image_name))
+            
+        else:
+            image_name = 'default.jpg'
+        post = Posts(title=title, category=category, content=content, poster_id=poster, image=image_name)
         db.session.add(post)
         db.session.commit()
-        flash('Post added successfully')
-        return redirect(url_for('home'))
+        flash('Post Added Successfully', 'success')
+        return redirect(url_for('dashboard'))
     else:
         print(form.errors)
-
     return render_template('addpost.html', form=form)
+    
+
+
+    
+    # if request.files['profile_pic']:
+    #         pic = request.files['profile_pic']
+    #         filename = secure_filename(pic.filename)
+    #         pic_name = str(uuid.uuid1()) + "_" + filename
+    #         pic.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+    #         user.profile_pic = pic_name
+          
 
 
 ################################################################################
@@ -132,6 +151,15 @@ def edit_post(id):
         post.title = form.title.data
         post.category = form.category.data
         post.content = form.content.data
+        if request.files['image']:
+            image = request.files['image']
+            filename = secure_filename(image.filename)
+            image_name = str(uuid.uuid1()) + "_" + filename
+            image.save(os.path.join(app.config['UPLOAD_FOLDER2'], image_name))
+            post.image = image_name
+        
+            
+
         db.session.commit()
         flash('Post updated successfully',category='success')
         return redirect(url_for('home'))
@@ -326,7 +354,16 @@ def your_posts():
 @login_required
 def delete_post(id):
     post_to_delete = Posts.query.get_or_404(id)
+    likes = Likes.query.filter_by(post_id=id).all()
+    views = Views.query.filter_by(post_id=id).all()
     try:
+        for like in likes:
+            db.session.delete(like)
+            db.session.commit()
+        for view in views:
+            db.session.delete(view)
+            db.session.commit()
+
         db.session.delete(post_to_delete)
         db.session.commit()
         return redirect('/dashboard')
@@ -348,7 +385,7 @@ def admin_edit_user(id):
         name_to_edit.role = form.role.data
         try:
             db.session.commit()
-            return redirect('/admin')
+            return redirect('/dashboard')
         except:
             flash("There was a problem editing that user")
             return render_template('admin_edit_user.html', form=form, name_to_edit=name_to_edit, id=id)
@@ -367,10 +404,10 @@ def admin_delete_user(id):
     try:
         db.session.delete(user_to_delete)
         db.session.commit()
-        return redirect('/admin')
+        return redirect('/dashboard')
     except:
         flash("There was a problem deleting that user")
-        return redirect('/admin')
+        return redirect('/dashboard')
 
 
 ################################################################################
@@ -597,6 +634,7 @@ class Posts(db.Model):
     poster_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     likes=db.relationship('Likes',backref='post',passive_deletes=True)
     views=db.relationship('Views',backref='post',passive_deletes=True)
+    image = db.Column(db.String(), nullable=True)
 
 # ---------------------------------------------------------------------------------------
 
