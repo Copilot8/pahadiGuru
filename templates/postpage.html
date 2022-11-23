@@ -22,19 +22,19 @@
 
 <div class="card mt-5 ml-4 rounded-4">
   <div class="card-body rounded-4">
-    <h5 class="card-title font-weight-bold ml-4" style="font-size: 4rem">
+    <h5 class="card-title font-weight-bold ml-4 " style="font-size: 4rem;">
       {{posts.title|upper}}
     </h5>
   </div>
-  <img src="\static\images\kedar.jpg" height="450" />
+  <img src="{{url_for('static', filename='images/feature_photo/'+ posts.image)}}" class="rounded-4" height="450" style="margin: 0 3rem;"/>
   <br />
   <br />
 
   <div class="d-flex">
     <div class="flex-shrink-0 ml-4">
       <img
-        src="\static\images\user.jpg"
-        class="w-100 rounded-circle"
+        src="{{url_for('static', filename='images/profile_pic/'+ posts.poster.profile_pic)}}"
+        class="rounded-circle"
         width="80"
         height="80"
       />
@@ -184,10 +184,6 @@
 
 <br /><br />
 
-
-<input type="Submit" value="Share" onclick="Share()">
-
-
 <script>
   // toggle with zoom animation
   function popUp() {
@@ -197,27 +193,6 @@
     body.classList.toggle("overflow-hidden");
     
   }
-  
-  
-  function Share() {
-    var url = window.location.href;
-    var title = document.title;
-    var text = "Share this post with your friends";
-    if (navigator.share) {
-      navigator
-        .share({
-          title: title,
-          text: text,
-          url: url,
-        })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      alert("Share is not supported");
-    }
-  }
-
-
 </script>
 
 {% endblock %}

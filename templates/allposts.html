@@ -44,13 +44,13 @@ h1,h2,h3,h4,h5,h6,p {
     	<div class="card col-md-12 p-3 rounded-4">
     		<div class="row ">
     			<div class="col-md-4">
-    				<img class="w-100" width="200" height="200" src="https://images.pexels.com/photos/14260474/pexels-photo-14260474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+    				<img class="w-100 rounded-4" width="200" height="200" src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}">
     			</div>
     			<div class="col-md-8">
     				<div class="card-block">
     					<h6 class="card-title" style="font-size: 2rem; font-weight: 600;">{{post.title}}</h6>
               <div class="content_txt">
-    					<p class="card-text text-justify">{{post.content|safe|truncate(500)}}</p>
+    					<p class="card-text text-justify">{{post.content|safe|truncate(300)}}</p>
               </div>
               <a href="{{url_for('postpage',id=post.id)}}" class="btn btn-primary float-end my-2" style=" color: white;">read more...</a>
     				</div>

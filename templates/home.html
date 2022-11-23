@@ -4,11 +4,16 @@
   .img-fluid{
     display: none;
   }
-  a {
-    color:#000000bb;
-    margin-bottom: 0%!important;
+ 
+  h1,h4,h5,h6,h2,h3, a, p{
     font-size: 1.4rem;
-  }
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    
+    
+}
 
   a:hover {
     color: inherit;
@@ -53,26 +58,28 @@
           <div class="col-xl-12">
           
             <div class="headline-box">
+
               <div class="headline-left-col">
                 <div class="headline-pic-box">
                   <a
                     class="headline-thumb"
                     href="{{url_for('postpage',id=historyPosts[0].id)}}"
                     ><img
-                    src="https://images.pexels.com/photos/10183991/pexels-photo-10183991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    alt="fcb-stadium-campnau"
+                      alt="mp sehore bjp mla karan singh viral video"
+                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[0].image)}}"
                   /></a>
+              
                 </div>
               </div>
               <div class="headline-right-col">
                 <div class="headline-body">
                   <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[0].title|truncate(50)}}</label></div>
+                    <div class="series-row"><label>{{historyPosts[0].title|truncate(20)}}</label></div>
                     <h3>
                       <a
                         href="{{url_for('postpage',id=historyPosts[0].id)}}"
-                        >{{historyPosts[0].content|safe|truncate(500)}}
-                      </a>
+                        >{{historyPosts[0].content|safe|truncate(300)}}</a
+                      >
                     </h3>
                   </div>
                 </div>
@@ -81,7 +88,6 @@
                     <div><span class="pre-span text-muted">Posted on: {{historyPosts[0].date_added}}</span></div>
                   </li>
                   <li class="like-item">
-                    
                     <div>
                       <i
                         class="fa-regular fa-share-nodes px-1"
@@ -93,6 +99,7 @@
                   </li>
                 </ul>
               </div>
+
               <div class="sc-hLBbgP hjrBgz"></div>
             </div>
             
@@ -112,7 +119,7 @@
                     href="{{url_for('postpage',id=historyPosts[1].id)}}"
                     ><img
                       alt="mp sehore bjp mla karan singh viral video"
-                      src="https://images.pexels.com/photos/8020071/pexels-photo-8020071.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[1].image)}}"
                   /></a>
               
                 </div>
@@ -145,7 +152,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="sc-hLBbgP hjrBgz"></div>
+
             </div>
           </div>
           <!-- small cards 2 -->
@@ -155,10 +162,10 @@
                 <div class="headline-pic-box">
                   <a
                     class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                    href="{{url_for('postpage',id=historyPosts[2].id)}}"
                     ><img
                       alt="mp sehore bjp mla karan singh viral video"
-                      src="https://images.pexels.com/photos/8020071/pexels-photo-8020071.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[2].image)}}"
                   /></a>
               
                 </div>
@@ -169,7 +176,7 @@
                     <div class="series-row"><label>{{historyPosts[2].title|truncate(20)}}</label></div>
                     <h3>
                       <a
-                        href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                        href="{{url_for('postpage',id=historyPosts[2].id)}}"
                         >{{historyPosts[2].content|safe|truncate(100)}}</a
                       >
                     </h3>
@@ -201,10 +208,10 @@
                 <div class="headline-pic-box">
                   <a
                     class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                    href="{{url_for('postpage',id=historyPosts[3].id)}}"
                     ><img
                       alt="mp sehore bjp mla karan singh viral video"
-                      src="https://images.pexels.com/photos/8020071/pexels-photo-8020071.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[3].image)}}"
                   /></a>
               
                 </div>
@@ -215,7 +222,7 @@
                     <div class="series-row"><label>{{historyPosts[3].title|truncate(20)}}</label></div>
                     <h3>
                       <a
-                        href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                        href="{{url_for('postpage',id=historyPosts[3].id)}}"
                         >{{historyPosts[3].content|safe|truncate(100)}}</a
                       >
                     </h3>
@@ -247,10 +254,10 @@
                 <div class="headline-pic-box">
                   <a
                     class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                    href="{{url_for('postpage',id=historyPosts[4].id)}}"
                     ><img
                       alt="mp sehore bjp mla karan singh viral video"
-                      src="https://images.pexels.com/photos/8020071/pexels-photo-8020071.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[4].image)}}"
                   /></a>
               
                 </div>
@@ -261,7 +268,7 @@
                     <div class="series-row"><label>{{historyPosts[4].title|truncate(20)}}</label></div>
                     <h3>
                       <a
-                        href="{{url_for('postpage',id=historyPosts[1].id)}}"
+                        href="{{url_for('postpage',id=historyPosts[4].id)}}"
                         >{{historyPosts[4].content|safe|truncate(100)}}</a
                       >
                     </h3>

@@ -22,9 +22,13 @@ a{
   <div class="row">
    
       <div class="card rounded-4">
-        <form class="card-body cardbody-color p-lg-5 rounded-4" method="POST">
+        <form class="card-body cardbody-color p-lg-5 rounded-4" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             {{ form.hidden_tag() }}
+            {{ form.image.label(class="form-label font-weight-bold text-uppercase") }}
+            {{form.image(class="form-control my-2")}}
+            </div>
+          <div class="mb-3">
             {{ form.title.label(class="form-label font-weight-bold text-uppercase ") }}
             {{form.title(class="form-control my-2",placeholder="Title")}}
           </div>
