@@ -7,14 +7,13 @@
   }
   .popUp {
     position: fixed;
-
+    
     display: none;
     opacity: 1;
   }
   .show1 {
-    position: fixed;
     display: block;
-    opacity: 1;
+    opacity: 1!important;
   }
 </style>
 {% endblock %} {% block content %}
@@ -153,6 +152,7 @@
                         border-radius: 6px;
                         text-align: center;
                         padding-top: 1px;
+                        text-decoration: none;
                       "
                       href="{{url_for('login')}}"
                       >Login</a
@@ -210,24 +210,14 @@
 
 <script>
   // create custom url of this page
-  var url = window.location.href;
-  var title = document.title;
-  var share = document.querySelector(".fa-share-nodes");
-  share.addEventListener("click", function () {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: title,
-          url: url,
-        })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      alert("Share is not supported");
-    }
-  });
+  function share() {
+    var url = window.location.href;
+    var title = document.querySelector("#post_title").innerHTML;
+    var content = document.querySelector("#post_content").innerHTML;
+    var share_url = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title} ${content}`;
+    window.open(share_url, "_blank");
+  }
 
-  // change default url on this page to custom url
 </script>
 
 {% endblock %}
