@@ -13,8 +13,15 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from form import AddPostForm, LoginForm, UserForm , roleForm, ContactForm , editProfileForm , forgotPassword ,resetPassword
-
+from flask_wtf.csrf import CSRFProtect
 app = Flask(__name__)
+
+
+csrf = CSRFProtect(app)
+
+
+csrf.init_app(app)
+
 ckeditor = CKEditor(app)
 
 UPLOAD_FOLDER = 'static/images/profile_pic'
@@ -27,7 +34,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 # Add DataBase mysql
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql://username:password@localhost/db_name'
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql://rahul:password123@localhost/users'
-app.config['SECRET_KEY'] = "secret key"
+app.config['SECRET_KEY'] = "asdasdasdasdasfdgrsd key"
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -102,6 +110,7 @@ def home():
 #add post
 
 @app.route("/addpost", methods=['GET', 'POST'])
+@login_required
 def addpost():
     form = AddPostForm()
     if form.validate_on_submit():
@@ -171,37 +180,37 @@ def edit_post(id):
 
 ################################################################################
 
-#register
+# #register
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    name = None
-    form = UserForm()
-    # validate form
-    if form.validate_on_submit():
-        user = Users.query.filter_by(email=form.email.data).first()
-        if user is None:
-            # Hash Password
-            if form.password_hash.data == form.password_hash2.data:
-                password_hash = generate_password_hash(form.password_hash.data, "sha256")
-                user = Users(name=form.name.data, email=form.email.data, username=form.username.data,about_author=form.about_author.data, password_hash=password_hash,phone=form.phone.data,security_question=form.security_question.data,security_answer=form.security_answer.data)
-                db.session.add(user)
-                db.session.commit()
-                flash('User registered successfully')
-                name = form.name.data
-                form.name.data = ""
-                form.username.data = ""
-                form.email.data = ""
-                form.about_author.data = ""
-                form.password_hash.data = ""
-                flash("User Added Successfully")
-                return redirect(url_for('home'))
-            else:
-                flash('Password does not match')
-                return redirect(url_for('register'))
-    else:
-        print(form.errors)
-    return render_template('register.html', form=form, name=name)
+# @app.route("/register", methods=['GET', 'POST'])
+# def register():
+#     name = None
+#     form = UserForm()
+#     # validate form
+#     if form.validate_on_submit():
+#         user = Users.query.filter_by(email=form.email.data).first()
+#         if user is None:
+#             # Hash Password
+#             if form.password_hash.data == form.password_hash2.data:
+#                 password_hash = generate_password_hash(form.password_hash.data, "sha256")
+#                 user = Users(name=form.name.data, email=form.email.data, username=form.username.data,about_author=form.about_author.data, password_hash=password_hash,phone=form.phone.data,security_question=form.security_question.data,security_answer=form.security_answer.data)
+#                 db.session.add(user)
+#                 db.session.commit()
+#                 flash('User registered successfully')
+#                 name = form.name.data
+#                 form.name.data = ""
+#                 form.username.data = ""
+#                 form.email.data = ""
+#                 form.about_author.data = ""
+#                 form.password_hash.data = ""
+#                 flash("User Added Successfully")
+#                 return redirect(url_for('home'))
+#             else:
+#                 flash('Password does not match')
+#                 return redirect(url_for('register'))
+#     else:
+#         print(form.errors)
+#     return render_template('register.html', form=form, name=name)
 
 
 ################################################################################
@@ -211,8 +220,11 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    form2 = UserForm()
+    print("outside loop")
     if form.validate_on_submit():
-        user = Users.query.filter_by(username=form.username.data).first()
+        print("inside first loop")
+        user = Users.query.filter_by(email=form.email.data).first()
         if user:
             if check_password_hash(user.password_hash, form.password.data):
                 if user.role == 'Admin':
@@ -229,16 +241,45 @@ def login():
                     role='User'
                     login_user(user)
                     return redirect(url_for('home',role=role))
-
-                    
                 else:
                     print(user.role)
                     flash("User not found")
-                
+                    return redirect(url_for('login'))
+            else:
+                flash("Incorrect Password")
+                return redirect(url_for('login'))
         else:
-            flash("That user dosent exists! Try Again!")
-            print(form.errors)
-    return render_template('login.html', form=form)
+            flash("User not found")
+            return redirect(url_for('login'))
+    else:
+        print("login error")
+        print(form.errors)
+
+    if form2.validate_on_submit():
+        print("inside second loop")
+        user = Users.query.filter_by(email=form2.email.data).first()
+        if user is None:
+            # Hash Password
+            password_hash = generate_password_hash(form2.password_hash.data, "sha256")
+            user = Users(email=form2.email.data, first_name=form2.first_name.data,last_name=form2.last_name.data,  password_hash=password_hash,security_question=form2.security_question.data, security_answer= form2.security_answer.data)
+            db.session.add(user)
+            db.session.commit()
+            form2.first_name.data = ""
+            form2.last_name.data = ""
+            form2.email.data = ""
+            form2.password_hash.data = ""
+            form2.security_question.data = ""
+            form2.security_answer.data = ""
+            flash("User Added Successfully")
+            return redirect(url_for('home'))
+            
+        else:
+            return redirect(url_for('login'))
+    else:
+        print("register error")
+        print(form2.errors)
+    
+    return render_template('login.html', form=form,form2=form2)
 
 
 ################################################################################
@@ -275,6 +316,9 @@ def dashboard():
             total_likes += 1
 
     return render_template('dashboard.html',post=post,total_posts=total_posts,total_views=total_views,total_likes=total_likes)
+# def dashboard():
+
+#     return render_template('dashboard.html')
 
 
 ################################################################################
@@ -440,27 +484,39 @@ def contact():
 
 @app.route("/edit_profile/<int:id>",methods=['GET','POST'])
 def edit_profile(id):
+    
     form=editProfileForm()
     user = Users.query.get(id)
-    if request.method == 'POST':
-        user.name= form.name.data
-        user.about_author= form.about_author.data
-        if request.files['profile_pic']:
-            pic = request.files['profile_pic']
-            filename = secure_filename(pic.filename)
-            pic_name = str(uuid.uuid1()) + "_" + filename
-            pic.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
-            user.profile_pic = pic_name
-          
     
-        try:
-            db.session.commit()
-            return redirect(url_for('dashboard'))
-        except:
-            flash("There was a problem editing that user")
-            return render_template('edit_profile.html', form=form, user=user)
+    if current_user.id == user.id:
+
+        if form.validate_on_submit():
+            
+
+            user.first_name=form.first_name.data
+            user.last_name=form.last_name.data
+            user.about_author= form.about_author.data
+            user.phone = form.phone.data
+            if request.files['profile_pic']:
+                pic = request.files['profile_pic']
+                filename = secure_filename(pic.filename)
+                pic_name = str(uuid.uuid1()) + "_" + filename
+                pic.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+                user.profile_pic = pic_name
+            try:
+                db.session.commit()
+                return redirect(url_for('dashboard'))
+            except:
+                flash("There was a problem editing that user")
+                return render_template('edit_profile.html', form=form, user=user,id=id)
+        else:
+            print(form.errors)
+
+        return render_template('edit_profile.html', form=form, user=user,id=id)
     else:
-        return render_template('edit_profile.html', form=form, user=user)
+        flash("You are not allowed to edit this profile")
+        return redirect(url_for('dashboard'))
+
 
 
 
@@ -472,9 +528,11 @@ def edit_profile(id):
 def allposts(category):
     posts = Posts.query.filter_by(category=category).all()
     posts.reverse()
-    
-    return render_template('allposts.html', posts=posts)
+    return render_template('allposts.html', posts=posts,category=category)
 
+# @app.route("/allposts")
+# def allposts():
+#     return render_template('allposts.html')
 
 ################################################################################
 
@@ -642,19 +700,19 @@ class Posts(db.Model):
 
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(150), nullable=False)
-    phone = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(150), nullable=False,unique=True)
+    phone = db.Column(db.String(50), nullable=True,default="None")
     date_added = db.Column(db.Date, default=date.today)
-    about_author = db.Column(db.String(500), nullable=False)
-    security_question = db.Column(db.String(50), nullable=False)
-    security_answer = db.Column(db.String(50), nullable=False)
+    about_author = db.Column(db.String(500), nullable=True,default="None")
+    security_question = db.Column(db.String(50), nullable=True)
+    security_answer = db.Column(db.String(50), nullable=True)
     password_hash = db.Column(db.String(128))
     role = db.Column(db.String(10), default='User')
     posts = db.relationship('Posts', backref='poster')
     likes=db.relationship('Likes',backref='user',passive_deletes=True)
-    profile_pic=db.Column(db.String(), nullable=True)
+    profile_pic=db.Column(db.String(), nullable=True , default="default.jpg")
 
 # ---------------------------------------------------------------------------------------
 

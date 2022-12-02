@@ -1,64 +1,46 @@
 {% extends 'base.html' %} {% block head %}
-<style>
-  .img-fluid{
-    display: none;
-  }
-    body {
-  background-color: #FFFFFF;
-}
-.card {
-  border-radius: 0;
-  margin: 10px auto;
-}
-.card-title {
-  text-transform: uppercase;
-  color: #66a1ff;
-}
-.card-text {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: #FFFFFF;
-  color: #000000;
-  
-}
-a.btn, a.btn:visited {
-  color: #333333;
-}
-h1,h2,h3,h4,h5,h6,p {
-  font-size: 1.6rem;
-  font-weight: 300;
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-</style>
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename='css/allposts.css')}}"
+/>
 {% endblock %} {% block content %}
 
-<br><br>
+<br /><br /><br /><br />
 
-
-<div class="container ml-2">
-    <div class="row" >
-        {% for post in posts %}
-    	<div class="card col-md-12 p-3 rounded-4">
-    		<div class="row ">
-    			<div class="col-md-4">
-    				<img class="w-100 rounded-4" width="200" height="200" src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}">
-    			</div>
-    			<div class="col-md-8">
-    				<div class="card-block">
-    					<h6 class="card-title" style="font-size: 2rem; font-weight: 600;">{{post.title}}</h6>
-              <div class="content_txt">
-    					<p class="card-text text-justify">{{post.content|safe|truncate(300)}}</p>
-              </div>
-              <a href="{{url_for('postpage',id=post.id)}}" class="btn btn-primary float-end my-2" style=" color: white;">read more...</a>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-        {% endfor %}
+<div class="container">
+  <div class="row">
+    {% for post in posts %}
+  
+    <div
+      class="card col-md-12 p-3 rounded-2"
+      style="
+        background-color: #f8f9fa;
+        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+          rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+      "
+      >
+      <a href="{{url_for('postpage',id=post.id)}}" style="text-decoration: none; color: #000!important; text-align: justify;">
+      <div class="row">
+        <div class="col-md-4">
+          <img
+            class="rounded-2 w-100"
+            height="180"
+            src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}"
+          />
+        </div>
+        <div class="col-md-8 my-2">
+          <div class="card-block">
+            <h6 class="card-title">{{post.title}}</h6>
+            <p class="card-text my-3">
+              {{post.content|safe|truncate(300)}}
+            </p>
+          </div>
+        </div>
+      </div>
+      </a>
     </div>
+    {% endfor %}
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
@@ -68,8 +50,6 @@ h1,h2,h3,h4,h5,h6,p {
 
 </script>
 
-<br><br>
-
- 
+<br />
 
 {% endblock %}

@@ -1,19 +1,48 @@
-{% extends 'base2.html' %} 
-{% block content %} {% for message in get_flashed_messages() %}
-
+{% extends 'base.html' %} {% block head %}
+<style>
+  .thebtn {
+    background-color: #4f92ff;
+    color: white;
+    border-radius: 8px !important;
+  }
+  .thebtn:hover {
+    background-color: #4f92ff;
+    color: white;
+    border-radius: 5px;
+  }
+</style>
+{% endblock %} {% block content %} {% for message in get_flashed_messages() %}
 {% endfor %}
 
-<br /><br>
+<br /><br /><br><br>
 
-<div class="card my-4 rounded-4">
-  <form action="/admin_edit_user/{{name_to_edit.id}}" class="card-body cardbody-color p-lg-5 rounded-4" method="POST">
-    {{ form.hidden_tag() }} {{ form.role.label(class="form-label font-weight-bold text-uppercase") }}
-    {{form.role(class="form-control", value=name_to_edit.role)}}
+{% if current_user.is_authenticated and (current_user.role == 'Admin') %}
+
+<div
+  class="card my-4 rounded-4 w-75 m-auto"
+  style="
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+      rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    background-color: #f8f9fa;
+  "
+>
+  <form
+    action="/admin_edit_user/{{name_to_edit.id}}"
+    class="card-body cardbody-color p-lg-5 rounded-4"
+    style="background-color: #f8f9fa"
+    method="POST"
+  >
+    {{ form.hidden_tag() }} {{ form.role.label(class="form-label
+    font-weight-bold text-uppercase") }} {{form.role(class="form-control",
+    value=name_to_edit.role)}}
     <br />
-    {{form.submit(class="btn btn-primary")}}
+    {{form.submit(class="btn btn-primary thebtn")}}
   </form>
 </div>
+
+{% endif %}
+
 <br />
-<br>
+<br />
 
 {% endblock %}

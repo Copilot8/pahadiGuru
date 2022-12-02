@@ -1,14 +1,13 @@
 {% extends 'base.html' %} {% block head %}
 <style>
-
   #post_content {
     padding: 17px;
-    font-size: 1.9rem;
+    font-size: 1.2rem;
     text-align: justify;
   }
   .popUp {
     position: fixed;
-   
+
     display: none;
     opacity: 1;
   }
@@ -19,165 +18,180 @@
   }
 </style>
 {% endblock %} {% block content %}
+<br /><br />
 
-<div class="card mt-5 ml-4 rounded-4">
-  <div class="card-body rounded-4">
-    <h5 class="card-title font-weight-bold ml-4 " style="font-size: 4rem;">
-      {{posts.title|upper}}
-    </h5>
-  </div>
-  <img src="{{url_for('static', filename='images/feature_photo/'+ posts.image)}}" class="rounded-4" height="450" style="margin: 0 3rem;"/>
-  <br />
-  <br />
-
-  <div class="d-flex">
-    <div class="flex-shrink-0 ml-4">
-      <img
-        src="{{url_for('static', filename='images/profile_pic/'+ posts.poster.profile_pic)}}"
-        class="rounded-circle"
-        width="80"
-        height="80"
-      />
-    </div>
-
-    <div class="flex-grow-1 ml-4 my-2">
-      <h5>{{posts.poster.name}}</h5>
-      <small class="text-muted">Posted on: {{posts.date_added}}</small>
-    </div>
-  </div>
-
-  <br />
-
-  <div id="post_content">{{posts.content|safe}}</div>
-
-  <br />
-
+<div class="container-sm">
   <div
+    class="card mt-5 ml-4 rounded-2"
     style="
-      display: flex;
-      align-items: center;
-      justify-content: right;
-      float: right;
-      padding-right: 18px;
-      padding-bottom: 5px;
+      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+      background-color: #f8f9fa;
     "
   >
-    <!-- view btn -->
-    <div style="display: flex; align-items: center; justify-content: center">
-      <a style="color: #4f92ff"
-        ><i
-          style="font-size: x-large; padding: 0; margin-left: 5px"
-          class="fa fa-eye"
-        ></i
-      ></a>
-      <span style="padding: 0.5rem">{{view_count}}</span>
+    <div class="card-body rounded-4">
+      <h5 class="card-title font-weight-bold ml-5" style="font-size: 1.9rem; color: #4f92ff;">
+        {{posts.title|upper}}
+      </h5>
+    </div>
+    <img
+      src="{{url_for('static', filename='images/feature_photo/'+ posts.image)}}"
+      class="w-100"
+      height="400"
+      style="padding: 0 10px; border-radius: 15px"
+    />
+    <br />
+    <br />
+
+    <div class="d-flex" style="margin-top: -2%;">
+      <div class="flex-shrink-0" style="margin-left: 3%;">
+        <img
+          src="{{url_for('static', filename='images/profile_pic/'+ posts.poster.profile_pic)}}"
+          class="rounded-circle"
+          width="80"
+          height="80"
+        />
+      </div>
+
+      <div class="flex-grow my-3" style="margin-left: 2%">
+        <h5>Posted by: {{posts.poster.first_name}} {{posts.poster.last_name}}</h5>
+        <small class="text-muted">Posted on: {{posts.date_added}}</small>
+      </div>
     </div>
 
-    <!-- like btn -->
-    <div style="display: flex; align-items: center; justify-content: center">
-      {% if current_user.is_authenticated %} {% if current_user.id in all_like
-      %}
-      <a href="{{url_for('like',id=posts.id)}}"
-        ><i
-          style="font-size: x-large; padding: 0; margin-left: 5px"
-          class="fa-solid fa-heart"
-        ></i
-      ></a>
+    <br />
+    <hr style="width: 80%; margin: auto;">
 
-      {% else %}
-      <a href="{{url_for('like',id=posts.id)}}"
-        ><i
-          style="font-size: x-large; padding: 0; margin-left: 5px"
-          class="fa-regular fa-heart"
-        ></i
-      ></a>
-      {% endif %} {% else %}
+    <div class="my-2" style="text-align: justify;" id="post_content">{{posts.content|safe}}</div>
 
-      <a onclick="popUp()"
-        ><i
-          style="
-            color: #4f92ff;
-            cursor: pointer;
-            font-size: x-large;
-            padding: 0;
-            margin-left: 5px;
-          "
-          class="fa-regular fa-heart"
-        ></i
-      ></a>
-      {% endif %}
+    <br />
 
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        float: right;
+        padding-right: 18px;
+        padding-bottom: 5px;
+      "
+    >
+      <!-- view btn -->
+      <div style="display: flex; align-items: center; justify-content: center">
+        <a style="color: #4f92ff;"
+          ><i
+            style="font-size: x-large; padding: 0; margin-left: 5px"
+            class="fa fa-eye"
+          ></i
+        ></a>
+        <span style="padding: 0.5rem">{{view_count}}</span>
+      </div>
 
+      <!-- like btn -->
+      <div style="display: flex; align-items: center; justify-content: center">
+        {% if current_user.is_authenticated %} {% if current_user.id in all_like
+        %}
+        <a href="{{url_for('like',id=posts.id)}}"
+          ><i
+            style="font-size: x-large; padding: 0; margin-left: 5px"
+            class="fa-solid fa-heart"
+          ></i
+        ></a>
 
-      <!-- login popup -->
-      <div
-        role="dialog"
-        aria-modal="true"
-        class="fade modal popup"
-        tabindex="-1"
-        
-      >
-        <div class="modal-dialog frist-login modal-dialog-centered">
-          <div class="modal-content modal login-next">
-            <div class="modal-body">
-              <div class="RegiModalBody">
-                <div>
-                  <p style="color: black; text-align: center" class="mt-2">
-                    Login to use this feature !
-                  </p>
+        {% else %}
+        <a href="{{url_for('like',id=posts.id)}}"
+          ><i
+            style="font-size: x-large; padding: 0; margin-left: 5px"
+            class="fa-regular fa-heart"
+          ></i
+        ></a>
+        {% endif %} {% else %}
+
+        <a onclick="popUp()"
+          ><i
+            style="
+              color: #4f92ff;
+              cursor: pointer;
+              font-size: x-large;
+              padding: 0;
+              margin-left: 5px;
+            "
+            class="fa-regular fa-heart"
+          ></i
+        ></a>
+        {% endif %}
+
+        <!-- login popup -->
+        <div
+          role="dialog"
+          aria-modal="true"
+          class="fade modal popup"
+          tabindex="-1"
+        >
+          <div class="modal-dialog frist-login modal-dialog-centered">
+            <div class="modal-content modal login-next">
+              <div class="modal-body">
+                <div class="RegiModalBody">
+                  <div>
+                    <p style="color: black; text-align: center" class="mt-2">
+                      Login to use this feature !
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <div class="modalfooter">
-                <div class="d-flex justify-content-between flex-direction-row">
-                  <a
-                    style="
-                      color: white;
-                      background-color: #4f92ff;
-                      width: 50px;
-                      height: 25px;
-                      border-radius: 6px;
-                      text-align: center;
-                      padding-top: 1px;
-                    "
-                    href="{{url_for('login')}}"
-                    >Login</a
+              <div class="modal-footer">
+                <div class="modalfooter">
+                  <div
+                    class="d-flex justify-content-between flex-direction-row"
                   >
-                  <!-- close -->
-                  <span
-                    style="
-                      color: white;
-                      background-color: #4f92ff;
-                      width: 50px;
-                      height: 25px;
-                      border-radius: 6px;
-                      text-align: center;
-                      margin-left: 8px;
-                      padding-top: 1px;
-                      cursor: pointer;
-                    "
-                    onclick="popUp()"
-                    >Close</span
-                  >
+                    <a
+                      style="
+                        color: white;
+                        background-color: #4f92ff;
+                        width: 50px;
+                        height: 25px;
+                        border-radius: 6px;
+                        text-align: center;
+                        padding-top: 1px;
+                      "
+                      href="{{url_for('login')}}"
+                      >Login</a
+                    >
+                    <!-- close -->
+                    <span
+                      style="
+                        color: white;
+                        background-color: #4f92ff;
+                        width: 50px;
+                        height: 25px;
+                        border-radius: 6px;
+                        text-align: center;
+                        margin-left: 8px;
+                        padding-top: 1px;
+                        cursor: pointer;
+                      "
+                      onclick="popUp()"
+                      >Close</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <span style="padding: 0.5rem">{{posts.likes|length}}</span>
       </div>
 
-      <span style="padding: 0.5rem">{{posts.likes|length}}</span>
-    </div>
-
-    <!-- share btn -->
-    <div style="display: flex; align-items: center; justify-content: center">
-      <a style="color: #4f92ff"
-        ><i
-          style="font-size: x-large; padding: 0; margin-left: 5px"
-          class="fas fa-share-nodes"
-        ></i
-      ></a>
+      <!-- share btn -->
+      <div style="display: flex; align-items: center; justify-content: center">
+        <a style="color: #4f92ff; cursor: pointer" onclick="share()"
+          ><i
+            style="font-size: x-large; padding: 0; margin-left: 5px"
+            class="fas fa-share-nodes"
+          ></i
+        ></a>
+      </div>
     </div>
   </div>
 </div>
@@ -191,8 +205,29 @@
     popup.classList.toggle("show");
     var body = document.querySelector("body");
     body.classList.toggle("overflow-hidden");
-    
   }
+</script>
+
+<script>
+  // create custom url of this page
+  var url = window.location.href;
+  var title = document.title;
+  var share = document.querySelector(".fa-share-nodes");
+  share.addEventListener("click", function () {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: title,
+          url: url,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      alert("Share is not supported");
+    }
+  });
+
+  // change default url on this page to custom url
 </script>
 
 {% endblock %}

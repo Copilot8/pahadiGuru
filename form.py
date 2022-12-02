@@ -14,21 +14,21 @@ class AddPostForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email-Id', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
 class UserForm(FlaskForm):
 
-    name = StringField('Name', validators=[DataRequired()])
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
     email = StringField('Email', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-    username = StringField('Username', validators=[DataRequired()])
-    about_author = TextAreaField('About', validators=[DataRequired()])
-    security_question = SelectField('Security Question', choices=[('What is your favourite color?'), ('What is your favourite hobby?'),('What is your favourite food?')], validators=[DataRequired()])
-    security_answer = StringField('Security Answer', validators=[DataRequired()])
-    password_hash=PasswordField('Password', validators=[DataRequired(),EqualTo('password_hash2',message='Passwords Must Match')])
-    password_hash2 = PasswordField('Confirm Password', validators=[DataRequired()])
+    phone = StringField('Phone')
+    about_author = TextAreaField('About')
+    security_question = SelectField('Security Question',validators=[DataRequired()], choices=[('What is your favourite color?'), ('What is your favourite hobby?'),('What is your favourite food?')])
+    security_answer = StringField('Security Answer',validators=[DataRequired()])
+    password_hash=PasswordField('Password', validators=[DataRequired()])
+    # password_hash2 = PasswordField('Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
 
@@ -47,10 +47,11 @@ class ContactForm(FlaskForm):
 
 class editProfileForm(FlaskForm):
 
-    name = StringField('Name', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
-    about_author = StringField('About', validators=[DataRequired()])
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
+    phone = StringField('Phone')
+    email = StringField('Email')
+    about_author = StringField('About')
     profile_pic=FileField('Profile Picture')
     submit = SubmitField('Save Changes')
 

@@ -1,58 +1,39 @@
-{% extends 'base2.html' %}
-
+{% extends 'base.html' %}
 {% block head %}
-<style>
-
-.cardbody-color{
-  background-color: #fff;
-}
-
-a{
-  text-decoration: none;
-}
-</style>
+<link rel="stylesheet" href="{{url_for('static',filename='css/contact.css')}}">
 {% endblock %}
+ 
 {% block content %}
 <br>
-<br>
 
-<center>
-  <p class="lead text-muted text-center" style="font-size: 1.8rem;">
-    Having any issues? Contact us!
-  </p>
-</center>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card my-1 rounded-4">
-        <form class="card-body cardbody-color p-lg-5 rounded-4" method="post">
-          <div class="mb-3">
-            {{form.hidden_tag()}}
-            {{ form.yourname.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.yourname(class="form-control")}}
-          </div>
-          <div class="mb-3">
-            {{ form.youremail.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.youremail(class="form-control")}}
-          </div>
-          <div class="mb-3">
-            {{ form.subject.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.subject(class="form-control")}}
-          </div>
-          <div class="mb-3">
-            {{ form.message.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.message(class="form-control")}}
-          </div>
-          <center>
-            {{form.submit(class="btn btn-primary" )}}
-        </center>
-        </form>
-      </div>
-    </div>
+<div>
+  <div class="contact-form-wrapper d-flex justify-content-center">
+    
+    <form class="contact-form" method="post">
+      <p class="text-muted">Facing any issue? Feel free to contact us.</p>
+      <br>
+        <div class="mb-3">
+          {{form.hidden_tag()}}
+          {{ form.yourname.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.yourname(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.youremail.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.youremail(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.subject.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.subject(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.message.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.message(class="form-control")}}
+        </div>
+        <center>
+          {{form.submit(class="btn btn-primary thebtn" )}}
+      </center>
+    </form>
   </div>
 </div>
 
-<br>
-<br>
 {% endblock %}

@@ -1,325 +1,85 @@
 {% extends 'base.html' %} {% block head %}
 
-<style>
-  .img-fluid{
-    display: none;
-  }
- 
-  h1,h4,h5,h6,h2,h3, a, p{
-    font-size: 1.4rem;
-    line-height: 1.5;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    
-    
-}
+<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}" />
 
+<style>
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   a:hover {
     color: inherit;
+    text-decoration: none;
   }
 </style>
 
 {% endblock %} {% block content %}
 
-<div id="auto-fade">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-            {% if category == 'message' %}
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {% else %}
-              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {% endif %}
-              {{ message }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-</div>
-        {% endfor %}
-      {% endif %}
-  {% endwith %}
-</div>
+<br /><br /><br /><br />
 
-<br /><br>
+<div class="container container__content--flow">
+  <a class="card" href="{{url_for('allposts',category='Uttarakhand History')}}"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/20/600/300" loading="lazy" />
+      <h2>Uttarakhand History</h2>
+      <p>
+        Temples, Monuments, Forts, Palaces, Museums, and other historical. Want to know more about Uttarakhand History? Click here.
+      </p>
+    </div></a
+  >
 
+  <a
+    href=" {{url_for('allposts',category='Uttarakhand Geography')}}"
+    class="card"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/40/600/300" loading="lazy" />
+      <h2>Uttarakhand Geography</h2>
+      <p>
+        Mountains, Rivers and more. Want to know more about Uttarakhand Geography? Click here.
+      </p>
+    </div></a
+  >
 
-<!-- uttarakhand history -->
-<div class="container-sm">
-  <div class="news-card-box" >
-    <div class="news-top-bar undefined" style="background: #63d3f8">
-      <div class="news-title-left undefined">
-        <span>UTTARAKHAND HISTORY</span>
-      </div>
-    </div>
-    <div class="news-card-body" >
-      <div class="headline-wrap">
-        <div class="row-cols-1 row-cols-xl-3 row-modify-15 big-card-box row">
-          
-          <div class="col-xl-12">
-          
-            <div class="headline-box">
+  <a href="{{url_for('allposts',category='Uttarakhand Current')}}" class="card"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/60/600/300" loading="lazy" />
+      <h2>Uttarakhand Current</h2>
+      <p>
+        What's happening in Uttarakhand? Want to know more about Uttarakhand Current? Click here.
+      </p>
+    </div></a
+  >
 
-              <div class="headline-left-col">
-                <div class="headline-pic-box">
-                  <a
-                    class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[0].id)}}"
-                    ><img
-                      alt="mp sehore bjp mla karan singh viral video"
-                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[0].image)}}"
-                  /></a>
-              
-                </div>
-              </div>
-              <div class="headline-right-col">
-                <div class="headline-body">
-                  <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[0].title|truncate(20)}}</label></div>
-                    <h3>
-                      <a
-                        href="{{url_for('postpage',id=historyPosts[0].id)}}"
-                        >{{historyPosts[0].content|safe|truncate(300)}}</a
-                      >
-                    </h3>
-                  </div>
-                </div>
-                <ul class="headline-footer">
-                  <li>
-                    <div><span class="pre-span text-muted">Posted on: {{historyPosts[0].date_added}}</span></div>
-                  </li>
-                  <li class="like-item">
-                    <div>
-                      <i
-                        class="fa-regular fa-share-nodes px-1"
-                        role="button"
-                        aria-label="Share Button"
-                        style="font-weight: 600"
-                      ></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+  <a href="{{url_for('allposts',category='Indian History')}}" class="card"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/80/600/300" loading="lazy" />
+      <h2>Indian History</h2>
+      <p>
+        Indian History is very vast. Want to know more about Indian History? Click here.
+      </p>
+    </div></a
+  >
 
-              <div class="sc-hLBbgP hjrBgz"></div>
-            </div>
-            
-            
-          </div>
-        </div>
-        <br>
-        <!-- small cards 1 -->
-        <div class="row-cols-1 row-cols-lg-2 row-cols-md-2 row-modify-15 row">
-          <div class="col">
-            
-            <div class="headline-box-sm">
-              <div class="headline-left-col">
-                <div class="headline-pic-box">
-                  <a
-                    class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[1].id)}}"
-                    ><img
-                      alt="mp sehore bjp mla karan singh viral video"
-                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[1].image)}}"
-                  /></a>
-              
-                </div>
-              </div>
-              <div class="headline-right-col">
-                <div class="headline-body">
-                  <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[1].title|truncate(20)}}</label></div>
-                    <h3>
-                      <a
-                        href="{{url_for('postpage',id=historyPosts[1].id)}}"
-                        >{{historyPosts[1].content|safe|truncate(100)}}</a
-                      >
-                    </h3>
-                  </div>
-                </div>
-                <ul class="headline-footer">
-                  <li>
-                    <div><span class="pre-span text-muted">Posted on: {{historyPosts[1].date_added}}</span></div>
-                  </li>
-                  <li class="like-item">
-                    <div>
-                      <i
-                        class="fa-regular fa-share-nodes px-1"
-                        role="button"
-                        aria-label="Share Button"
-                        style="font-weight: 600"
-                      ></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+  <a href="{{url_for('allposts',category='Indian Geography')}}" class="card"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/100/600/300" loading="lazy" />
+      <h2>Indian Geography</h2>
+      <p>
+        Indian Mountains, Rivers and more. Want to know more about Indian Geography? Click here.
+      </p>
+    </div></a
+  >
 
-            </div>
-          </div>
-          <!-- small cards 2 -->
-          <div class="col">
-            <div class="headline-box-sm">
-              <div class="headline-left-col">
-                <div class="headline-pic-box">
-                  <a
-                    class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[2].id)}}"
-                    ><img
-                      alt="mp sehore bjp mla karan singh viral video"
-                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[2].image)}}"
-                  /></a>
-              
-                </div>
-              </div>
-              <div class="headline-right-col">
-                <div class="headline-body">
-                  <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[2].title|truncate(20)}}</label></div>
-                    <h3>
-                      <a
-                        href="{{url_for('postpage',id=historyPosts[2].id)}}"
-                        >{{historyPosts[2].content|safe|truncate(100)}}</a
-                      >
-                    </h3>
-                  </div>
-                </div>
-                <ul class="headline-footer">
-                  <li>
-                    <div><span class="pre-span text-muted">Posted on: {{historyPosts[2].date_added}}</span></div>
-                  </li>
-                  <li class="like-item">
-                    <div>
-                      <i
-                        class="fa-regular fa-share-nodes px-1"
-                        role="button"
-                        aria-label="Share Button"
-                        style="font-weight: 600"
-                      ></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="sc-hLBbgP hjrBgz"></div>
-            </div>
-          </div>
-          <!-- small cards 3 -->
-          <div class="col">
-            <div class="headline-box-sm">
-              <div class="headline-left-col">
-                <div class="headline-pic-box">
-                  <a
-                    class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[3].id)}}"
-                    ><img
-                      alt="mp sehore bjp mla karan singh viral video"
-                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[3].image)}}"
-                  /></a>
-              
-                </div>
-              </div>
-              <div class="headline-right-col">
-                <div class="headline-body">
-                  <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[3].title|truncate(20)}}</label></div>
-                    <h3>
-                      <a
-                        href="{{url_for('postpage',id=historyPosts[3].id)}}"
-                        >{{historyPosts[3].content|safe|truncate(100)}}</a
-                      >
-                    </h3>
-                  </div>
-                </div>
-                <ul class="headline-footer">
-                  <li>
-                    <div><span class="pre-span text-muted">Posted on: {{historyPosts[3].date_added}}</span></div>
-                  </li>
-                  <li class="like-item">
-                    <div>
-                      <i
-                        class="fa-regular fa-share-nodes px-1"
-                        role="button"
-                        aria-label="Share Button"
-                        style="font-weight: 600"
-                      ></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="sc-hLBbgP hjrBgz"></div>
-            </div>
-          </div>
-          <!-- small cards 4 -->
-          <div class="col">
-            <div class="headline-box-sm">
-              <div class="headline-left-col">
-                <div class="headline-pic-box">
-                  <a
-                    class="headline-thumb"
-                    href="{{url_for('postpage',id=historyPosts[4].id)}}"
-                    ><img
-                      alt="mp sehore bjp mla karan singh viral video"
-                      src="{{url_for('static', filename='images/feature_photo/'+ historyPosts[4].image)}}"
-                  /></a>
-              
-                </div>
-              </div>
-              <div class="headline-right-col">
-                <div class="headline-body">
-                  <div class="headline-info">
-                    <div class="series-row"><label>{{historyPosts[4].title|truncate(20)}}</label></div>
-                    <h3>
-                      <a
-                        href="{{url_for('postpage',id=historyPosts[4].id)}}"
-                        >{{historyPosts[4].content|safe|truncate(100)}}</a
-                      >
-                    </h3>
-                  </div>
-                </div>
-                <ul class="headline-footer">
-                  <li>
-                    <div><span class="pre-span text-muted">Posted on: {{historyPosts[4].date_added}}</span></div>
-                  </li>
-                  <li class="like-item">
-                                  <div>
-                      <i
-                        class="fa-regular fa-share-nodes px-1"
-                        role="button"
-                        aria-label="Share Button"
-                        style="font-weight: 600"
-                      ></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="sc-hLBbgP hjrBgz"></div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
+  <a href="{{url_for('allposts',category='Indian Current')}}" class="card"
+    ><div class="card" style="background-color: #f8f9fa">
+      <img src="https://picsum.photos/id/120/600/300" loading="lazy" />
+      <h2>Indian Current</h2>
+      <p>
+        Want latest news about India? Want to know more about Indian Current? Click here.
+      </p>
+    </div></a
+  >
 </div>
 <br><br>
-<!-- end of post -->
-
-
-<!-- ############################################################################################ -->
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script>
-  $('p img').addClass('img-fluid');
-
-</script>
-
 
 {% endblock %}

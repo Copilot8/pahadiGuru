@@ -1,62 +1,29 @@
-<footer class="footer-07"  style="background-color: #fff; box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 5%)">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col text-center">
-        <h2 class="footer-heading">
-          <p href="#" class="logo" style="color: #4f92ff; font-size: 25px; font-weight: bolder;">pahadiGURU</p>
-        </h2>
-        <p class="menu">
-          <a href="{{url_for('home')}}" style="color: #00000080">Home</a>
-          <a href="{{url_for('authors')}}" style="color: #00000080">Authors</a>
-          <a href="{{url_for('about')}}" style="color: #00000080">About</a>
-          <a href="{{url_for('contact')}}" style="color: #00000080">Contact</a>
-        </p>
-        <ul class="ftco-footer-social p-0">
-          <li class="ftco-animate">
-            <a
-              href="#"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Twitter"
-              ><span class="fa-brands fa-twitter" style="color: #4f92ff"></span
-            ></a>
-          </li>
-          <li class="ftco-animate">
-            <a
-              href="#"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Facebook"
-              ><span class="fa-brands fa-facebook" style="color: #4f92ff"></span
-            ></a>
-          </li>
-          <li class="ftco-animate">
-            <a
-              href="#"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Instagram"
-              ><span
-                class="fa-brands fa-instagram"
-                style="color: #4f92ff"
-              ></span
-            ></a>
-          </li>
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/footer.css')}}">
+
+{% endblock %}
+
+<div class="pg-footer">
+  
+  <footer>
+    <div class="footer-content">
+        <h3>PAHADiGURU</h3>
+        <p class="text-muted" style="font-size: .8rem; padding: 0 1rem;">Pahadiguru is a website where you can find all the information about the Uttarakhand state and India.</p>
+        <ul style="padding-left: 0;" class="socials">
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-instagram"></i></a></li>
         </ul>
-      </div>
+        <div class="footer-menu " style="margin-top: -20px;">
+          <ul style="padding-left: 0;" class="f-menu">
+            <li><a href="{{url_for('about')}}">About</a></li>
+            <li><a href="{{url_for('authors')}}">Authors</a></li>
+            <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+          </ul>
+          <p class="text-muted">2022 | Copyright &copy; Pahadiguru </p>
+        </div>
+       
     </div>
-    <hr>
-    <br>
-    <div class="row mt-1">
-      <div class="col text-center">
-        <p class="copyright" style="color: #00000080">
-          Copyright &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          All rights reserved
-        </p>
-      </div>
-    </div>
-  </div>
 </footer>
+  
+</div>

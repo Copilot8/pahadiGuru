@@ -1,5 +1,5 @@
 
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
 <style>
@@ -11,16 +11,32 @@
 a{
   text-decoration: none;
 }
+.thebtn{
+    background-color: #4f92ff;
+    color: white;
+    border-radius:8px !important;
+  }
+  .thebtn:hover{
+    background-color: #4f92ff;
+    color: white;
+    border-radius: 5px;
+  }
 </style>
 {% endblock %}
 {% block content %}
-<br><br>
+<br><br><br><br>
+
+{% if current_user.is_authenticated  and (current_user.role == 'Author' or current_user.role == 'Admin')  %}
+
 
 <div class="container">
   <div class="row">
    
-      <div class="card my-1 rounded-4">
-        <form class="card-body cardbody-color p-lg-5 rounded-4" method="POST" enctype="multipart/form-data">
+      <div class="card my-1 rounded-4" style="
+      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+      background-color: #f8f9fa;">
+        <form class="card-body cardbody-color p-lg-5 rounded-4" style="background-color: #f8f9fa;" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             {{ form.hidden_tag() }}
             {{ form.image.label(class="form-label font-weight-bold text-uppercase") }}
@@ -40,7 +56,7 @@ a{
           </div>
           <br>
           <center>
-            {{form.submit(class="btn btn-primary" )}}
+            {{form.submit(class="btn btn-primary thebtn" )}}
         </center>
         </form>
       </div>
@@ -48,6 +64,9 @@ a{
   </div>
 </div>
 {{ ckeditor.load() }} {{ ckeditor.config(name='content', toolbar='full') }}
+
+{% endif %}
+
 <br><br>
 
 {% endblock %}

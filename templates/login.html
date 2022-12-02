@@ -1,82 +1,156 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
-<style>
-
-.profile-image-pic{
-  height: 200px;
-  width: 200px;
-  object-fit: cover;
-}
+<link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+<script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
 
 
+        
 
-.cardbody-color{
-  background-color: #fff;
-}
-
-a{
-  text-decoration: none;
-}
-</style>
 {% endblock %}
+
 {% block content %}
 <br>
+<br><br>
 
-<div id="auto-fade">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-            {% if category == 'message' %}
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {% else %}
-              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {% endif %}
-              {{ message }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-</div>
-        {% endfor %}
-      {% endif %}
-  {% endwith %}
-</div>
-<br>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card rounded-4">
-        <form class="card-body cardbody-color p-lg-5 rounded-4" method="post">
-          <p style="text-align: center; background-color: #fff;">Need an account? <a href="{{url_for('register')}}"> Register</a> | <a href="{{url_for('forgotpassword')}}"> Forgot Password</a></p>
-          <div class="text-center">
-            <img
-              src="https://i0.wp.com/researchictafrica.net/wp/wp-content/uploads/2016/10/default-profile-pic.jpg?ssl=1"
-              class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-              width="200px"
-              alt="profile"
-            />
-          </div>
+<div class="body">
+    <div class="veen">
+        <div class="login-btn splits">
+            <p>Already an user?</p>
+            <button class="active">Login</button>
+        </div>
+        <div class="rgstr-btn splits">
+            <p>Don't have an account?</p>
+            <button>Register</button>
+        </div>
+        <div class="wrapper">
+            <form id="login" tabindex="500" action="/login" method="post">
+                <h3>Login</h3>
+                <div class="mail">
+                    
+                    {{form.hidden_tag()}}
 
-          <div class="mb-3">
-            {{form.hidden_tag()}}
-            {{ form.username.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.username(class="form-control")}}
-          </div>
-          <div class="mb-3">
-            {{ form.password.label(class="form-label font-weight-bold text-uppercase") }}
-            {{form.password(class="form-control")}}
-          </div>
-          <center>
-            {{form.submit(class="btn btn-primary" )}}
-          </center>
-        </form>
+                    {{form.email}}
+                    {{form.email.label}}
+                </div>
+                <div class="passwd">
+                    {{form.password}}
+                    {{form.password.label}}
+                </div>
+                <div class="submit">
+                    {{form.submit(class="dark css")}}
+                </div>
+                <div class="name">
+                    <a style="text-decoration: none; color: #4f92ff;" href="{{url_for('forgotpassword')}}">Forgot Password</a>
+                </div>
+
+
+            </form>
+
+            <!-- register form -->
+            <br>
+            
+            <form id="register" tabindex="502" method="post" action="/login">
+                <br><br><br><br>
+                <h3>Register</h3>
+                    {{form2.hidden_tag()}}
+                <div class="first_name">
+                    {{form2.first_name}}
+                    {{form2.first_name.label}}
+                </div>
+                <div class="last_name">
+                    {{form2.last_name}}
+                    {{form2.last_name.label}}
+                </div>      
+                <div class="mail">
+                    {{form2.email(class='e-mail')}}
+                    <label>E-Mail Id</label>
+                </div>
+                <div class="passwd">
+                    {{form2.password_hash(class='password')}}
+                    <label>Password</label>
+                </div>
+                <div class="uid">
+                    {{form2.security_question}}
+                    <label>Security Question</label>
+                </div>
+                <div class="passwd">
+                    {{form2.security_answer}}
+                    <label>Security Answer</label>
+                </div>
+                <div class="submit">
+                    {{form2.submit(class="dark css" )}}
+                </div>
+            </form>
+        </div>
+    </div>	
+</div>
+
+
+<style type="text/css">
+    .site-link{
+        padding: 5px 15px;
+        position: fixed;
+        z-index: 99999;
+        background: #fff;
+        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+        right: 30px;
+        bottom: 30px;
+        border-radius: 10px;
+    }
+    .site-link img{
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
+<script>
+	$(document).ready(function(){
+			$(".veen .rgstr-btn button").click(function(){
+				$('.veen .wrapper').addClass('move');
+				$('.body').css('background','#4f92ff');
+				$(".veen .login-btn button").removeClass('active');
+				$(this).addClass('active');
+
+			});
+			$(".veen .login-btn button").click(function(){
+				$('.veen .wrapper').removeClass('move');
+				$('.body').css('background','#4f92ff');
+				$(".veen .rgstr-btn button").removeClass('active');
+				$(this).addClass('active');
+			});
+		});
+
+        // email validator on id
+        $('.e-mail').on('keyup', function(){
+            var email = $(this).val();
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if( !emailReg.test( email ) ) {
+                $(this).css('border', '1px solid red');
+            } else {
+                $(this).css('border', '1px solid green');
+            }
+        });
+
+        // password validator on id
+        $('.password').on('keyup', function(){
+            var password = $(this).val();
+            var passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+            if( !passwordReg.test( password ) ) {
+                $(this).css('border', '1px solid red');
+            } else {
+                $(this).css('border', '1px solid green');
+            }
+        });
+
         
-      </div>
-      
-    </div>
-    
-  </div>
-</div>
 
-<br>
-<br>
+        
+        
+
+</script>
+
 {% endblock %}
+
+
