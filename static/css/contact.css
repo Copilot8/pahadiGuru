@@ -1,0 +1,68 @@
+.contact-form-wrapper {
+    padding: 100px 0;
+    background: #f4f4f4;
+   
+  }
+  
+  .contact-form {
+    padding: 30px 40px;
+    background-color: #F8F9FA;
+    border-radius: 10px;
+    width: 30rem;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  }
+  
+  .contact-form textarea {
+    resize: none;
+  }
+  
+  .contact-form .form-input,
+  .form-text-area {
+    background-color: #f0f4f5;
+    height: 50px;
+    padding-left: 16px;
+  }
+  
+  .contact-form .form-text-area {
+    background-color: #f0f4f5;
+    height: auto;
+    padding-left: 16px;
+  }
+  
+  .contact-form .form-control::placeholder {
+    color: #aeb4b9;
+    font-weight: 500;
+    opacity: 1;
+  }
+  
+  .contact-form .form-control:-ms-input-placeholder {
+    color: #aeb4b9;
+    font-weight: 500;
+  }
+  
+  .contact-form .form-control::-ms-input-placeholder {
+    color: #aeb4b9;
+    font-weight: 500;
+  }
+  
+  .contact-form .form-control:focus {
+    border-color: #4f92ff;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.07), 0 0 3px #4f92ff;
+  }
+  
+  .contact-form .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .thebtn{
+    background-color: #4f92ff;
+    color: white;
+    border-radius:8px !important;
+  }
+  .thebtn:hover{
+    background-color: #4f92ff;
+    color: white;
+    border-radius: 5px;
+  }
