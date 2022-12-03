@@ -17,11 +17,11 @@
 <div class="body">
     <div class="veen">
         <div class="login-btn splits">
-            <p>Already an user?</p>
+            <p style="color:black">Already an user?</p>
             <button class="active">Login</button>
         </div>
         <div class="rgstr-btn splits">
-            <p>Don't have an account?</p>
+            <p style="color:black">Don't have an account?</p>
             <button>Register</button>
         </div>
         <div class="wrapper">
@@ -52,7 +52,7 @@
             <br>
             
             <form id="register" tabindex="502" method="post" action="/login">
-                <br><br><br><br>
+                <br><br>
                 <h3>Register</h3>
                     {{form2.hidden_tag()}}
                 <div class="first_name">
@@ -109,14 +109,14 @@
 	$(document).ready(function(){
 			$(".veen .rgstr-btn button").click(function(){
 				$('.veen .wrapper').addClass('move');
-				$('.body').css('background','#4f92ff');
+				$('.body').css('background','#f4f4f4');
 				$(".veen .login-btn button").removeClass('active');
 				$(this).addClass('active');
 
 			});
 			$(".veen .login-btn button").click(function(){
 				$('.veen .wrapper').removeClass('move');
-				$('.body').css('background','#4f92ff');
+				$('.body').css('background','#f4f4f4');
 				$(".veen .rgstr-btn button").removeClass('active');
 				$(this).addClass('active');
 			});

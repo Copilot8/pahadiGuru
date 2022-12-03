@@ -18,69 +18,98 @@
 
 <br /><br /><br /><br />
 
-<div class="container container__content--flow">
-  <a class="card" href="{{url_for('allposts',category='Uttarakhand History')}}"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/20/600/300" loading="lazy" />
-      <h2>Uttarakhand History</h2>
-      <p>
-        Temples, Monuments, Forts, Palaces, Museums, and other historical. Want to know more about Uttarakhand History? Click here.
-      </p>
-    </div></a
-  >
-
-  <a
-    href=" {{url_for('allposts',category='Uttarakhand Geography')}}"
-    class="card"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/40/600/300" loading="lazy" />
-      <h2>Uttarakhand Geography</h2>
-      <p>
-        Mountains, Rivers and more. Want to know more about Uttarakhand Geography? Click here.
-      </p>
-    </div></a
-  >
-
-  <a href="{{url_for('allposts',category='Uttarakhand Current')}}" class="card"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/60/600/300" loading="lazy" />
-      <h2>Uttarakhand Current</h2>
-      <p>
-        What's happening in Uttarakhand? Want to know more about Uttarakhand Current? Click here.
-      </p>
-    </div></a
-  >
-
-  <a href="{{url_for('allposts',category='Indian History')}}" class="card"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/80/600/300" loading="lazy" />
-      <h2>Indian History</h2>
-      <p>
-        Indian History is very vast. Want to know more about Indian History? Click here.
-      </p>
-    </div></a
-  >
-
-  <a href="{{url_for('allposts',category='Indian Geography')}}" class="card"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/100/600/300" loading="lazy" />
-      <h2>Indian Geography</h2>
-      <p>
-        Indian Mountains, Rivers and more. Want to know more about Indian Geography? Click here.
-      </p>
-    </div></a
-  >
-
-  <a href="{{url_for('allposts',category='Indian Current')}}" class="card"
-    ><div class="card" style="background-color: #f8f9fa">
-      <img src="https://picsum.photos/id/120/600/300" loading="lazy" />
-      <h2>Indian Current</h2>
-      <p>
-        Want latest news about India? Want to know more about Indian Current? Click here.
-      </p>
-    </div></a
-  >
+<div class="container">
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Uttarakhand History')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Uttarakhand History</h2>
+          <p class="card-intro">Temples, Monuments, Forts and other historical. Want to know more about Uttarakhand History? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Uttarakhand Geography')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Uttarakhand Geography</h2>
+          <p class="card-intro">Mountains, Rivers and more. Want to know more about Uttarakhand Geography? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Uttarakhand Current')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Uttarakhand Current</h2>
+          <p class="card-intro">What's happening in Uttarakhand? Want to know more about Uttarakhand Current? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Indian History')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Indian History</h2>
+          <p class="card-intro">Indian History is very vast. Want to know more about Indian History? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Indian Geography')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Indian Geography</h2>
+          <p class="card-intro">Indian Mountains, Rivers and more. Want to know more about Indian Geography? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="cards">
+    <a href="{{url_for('allposts',category='Indian Current')}}">
+      <div class="card-item">
+        <div class="card-image">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Indian Current</h2>
+          <p class="card-intro">Want latest news about India? Want to know more about Indian Current? Click here.</p>
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
+<script>
+(function() {
+  var images;
+
+  images = ["https://source.unsplash.com/featured/?mountains"];
+
+  $('div.card-image').each(function() {
+    var random_image_index;
+    random_image_index = Math.floor(images.length * Math.random());
+    return $(this).css('background-image', 'url(' + images[random_image_index] + ')');
+  });
+
+}).call(this);
+
+</script>
 <br><br>
 
 {% endblock %}
+
+

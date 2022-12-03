@@ -20,9 +20,9 @@ footer{
   font-size: 2rem;
   text-transform: capitalize;
   line-height: 3rem;
-  font-weight: 600;
+  font-weight: bolder;
   color: #4f92ff;
-  font-family: cursive;
+  
 }
 .footer-content p{
   max-width: 500px;

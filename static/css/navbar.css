@@ -11,10 +11,9 @@
 }
 
 .logo {
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 1.5rem;
   color: #4f92ff ;
-  font-family: cursive;
 }
 .logo:hover{
   color: #4f92ff ;

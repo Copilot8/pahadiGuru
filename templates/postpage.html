@@ -5,16 +5,125 @@
     font-size: 1.2rem;
     text-align: justify;
   }
-  .popUp {
-    position: fixed;
-    
-    display: none;
-    opacity: 1;
-  }
-  .show1 {
-    display: block;
-    opacity: 1!important;
-  }
+
+
+.popup-container {
+  display: inline-block;
+}
+.popup-container .popup-button {
+  background: #333;
+  line-height: 34px;
+  color: #fff;
+  padding: 0 20px;
+  border-radius: 3px;
+  display: block;
+  cursor: pointer;
+}
+.popup-container .popup-button:hover {
+  background: #444;
+}
+.popup-container .popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: 250ms all;
+}
+.popup-container .popup .popup-inner {
+  width: 300px;
+  box-sizing: border-box;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 150%;
+  transition: 250ms all;
+}
+.popup-container .popup .popup-inner .popup-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.popup-container .popup .popup-inner .popup-title h6 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.popup-container .popup .popup-inner .popup-title .popup-close-btn {
+  cursor: pointer;
+  background: #eee;
+  display: block;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #222;
+  border-radius: 3px;
+}
+.popup-container .popup .popup-inner .popup-content ul li {
+  margin-bottom: 10px;
+}
+.popup-container .popup .popup-inner .popup-content ul li:last-child {
+  margin-bottom: 0;
+}
+.popup-container .popup .popup-inner .popup-content ul li input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  line-height: 34px;
+  padding: 0 15px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.popup-container .popup .popup-inner .popup-content ul li button {
+  width: 100%;
+  line-height: 34px;
+  background: #666;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+}
+.popup-container .popup .popup-inner .popup-content ul li button:hover {
+  background: #444;
+}
+.popup-container .popup .transparent-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  cursor: pointer;
+}
+.popup-container > input {
+  display: none;
+}
+.popup-container > input:checked + .popup {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-container > input:checked + .popup .popup-inner {
+  top: 50%;
+}
+.thebtn{
+  background-color: #4f92ff;
+  color: white;
+  border-radius:8px !important;
+ 
+}
+.thebtn:hover{
+  background-color: #4f92ff;
+  color: white;
+  border-radius: 5px;
+}
 </style>
 {% endblock %} {% block content %}
 <br /><br />
@@ -106,8 +215,9 @@
         ></a>
         {% endif %} {% else %}
 
-        <a onclick="popUp()"
-          ><i
+        <div class="popup-container" style="list-style: none;
+        text-decoration: none;">
+          <label for="login-popup"><i
             style="
               color: #4f92ff;
               cursor: pointer;
@@ -117,68 +227,23 @@
             "
             class="fa-regular fa-heart"
           ></i
-        ></a>
-        {% endif %}
-
-        <!-- login popup -->
-        <div
-          role="dialog"
-          aria-modal="true"
-          class="fade modal popup"
-          tabindex="-1"
-        >
-          <div class="modal-dialog frist-login modal-dialog-centered">
-            <div class="modal-content modal login-next">
-              <div class="modal-body">
-                <div class="RegiModalBody">
-                  <div>
-                    <p style="color: black; text-align: center" class="mt-2">
-                      Login to use this feature !
-                    </p>
-                  </div>
-                </div>
+        ></label>
+          <input type="checkbox" id="login-popup">
+          <div class="popup">
+            <label for="login-popup" class="transparent-label"></label>
+            <div class="popup-inner">
+              <div class="popup-title">
+                <strong class="my-1">Login to use this feature !</strong>
+                <label for="login-popup"><i class="fa-solid fa-circle-xmark" style="font-size: 1.5rem;"></i></label>
               </div>
-              <div class="modal-footer">
-                <div class="modalfooter">
-                  <div
-                    class="d-flex justify-content-between flex-direction-row"
-                  >
-                    <a
-                      style="
-                        color: white;
-                        background-color: #4f92ff;
-                        width: 50px;
-                        height: 25px;
-                        border-radius: 6px;
-                        text-align: center;
-                        padding-top: 1px;
-                        text-decoration: none;
-                      "
-                      href="{{url_for('login')}}"
-                      >Login</a
-                    >
-                    <!-- close -->
-                    <span
-                      style="
-                        color: white;
-                        background-color: #4f92ff;
-                        width: 50px;
-                        height: 25px;
-                        border-radius: 6px;
-                        text-align: center;
-                        margin-left: 8px;
-                        padding-top: 1px;
-                        cursor: pointer;
-                      "
-                      onclick="popUp()"
-                      >Close</span
-                    >
-                  </div>
-                </div>
+              <div class="popup-content">
+                <a href="{{url_for('login')}}" class="btn btn-primary thebtn" style="margin-left: 40%;">Login</a>
               </div>
             </div>
           </div>
         </div>
+
+        {% endif %}
 
         <span style="padding: 0.5rem">{{posts.likes|length}}</span>
       </div>
@@ -198,26 +263,7 @@
 
 <br /><br />
 
-<script>
-  // toggle with zoom animation
-  function popUp() {
-    var popup = document.querySelector(".popup");
-    popup.classList.toggle("show1");
-    var body = document.querySelector("body");
-    body.classList.toggle("overflow-hidden");
-  }
-</script>
 
-<script>
-  // create custom url of this page
-  function share() {
-    var url = window.location.href;
-    var title = document.querySelector("#post_title").innerHTML;
-    var content = document.querySelector("#post_content").innerHTML;
-    var share_url = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title} ${content}`;
-    window.open(share_url, "_blank");
-  }
 
-</script>
 
 {% endblock %}
