@@ -1,0 +1,29 @@
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/footer.css')}}">
+
+{% endblock %}
+
+<div class="pg-footer">
+  
+  <footer>
+    <div class="footer-content">
+        <h3>PAHADiGURU</h3>
+        <p class="text-muted" style="font-size: .8rem; padding: 0 1rem;">Pahadiguru is a website where you can find all the information about the Uttarakhand state and India.</p>
+        <ul style="padding-left: 0;" class="socials">
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="#"><i style="font-size: x-large;" class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+        <div class="footer-menu " style="margin-top: -20px;">
+          <ul style="padding-left: 0;" class="f-menu">
+            <li><a href="{{url_for('about')}}">About</a></li>
+            <li><a href="{{url_for('authors')}}">Authors</a></li>
+            <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+          </ul>
+          <p class="text-muted">2022 | Copyright &copy; Pahadiguru </p>
+        </div>
+       
+    </div>
+</footer>
+  
+</div>

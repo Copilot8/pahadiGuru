@@ -1,0 +1,172 @@
+{% extends 'base.html' %} {% block head %}
+<style>
+  body {
+    background: #f4f4f4;
+    margin-top: 20px;
+  }
+  .img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(89, 89, 89);
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .social-link:hover {
+    color: #4f92ff;
+  }
+</style>
+{% endblock %} {% block content %}
+<br /><br />
+
+<div class="container py-4">
+  <div class="row mb-4">
+    <div class="col-lg-5">
+      <h2 class="display-4 font-weight-light" style="color: black">About</h2>
+      <p class="font-italic text-muted" style="color: black">
+        PahadiGuru is a eductaional website helps to get knowledge about
+        History, Geography and Current Affairs of Uttarakhand as wells as India.
+        And also provides the information about Hindi And Computer.
+      </p>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row mb-4">
+    <div class="col-lg-5">
+      <h2 class="display-4 font-weight-light" style="color: black">Our team</h2>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <!-- Team item-->
+    <div class="col-xl-3 col-sm-6 mb-5">
+      <div
+        class=" rounded-4 shadow-sm py-5 px-4"
+        style="
+          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+            rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+ background-color: #F8F9FA;"
+      >
+        <img
+          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+          alt=""
+          width="100"
+          class="img-fluid rounded-circle mb-3"
+        />
+        <h5 class="mb-0">Rahul Bhandari</h5>
+        <span class="small text-uppercase text-muted">Founder & Developer</span>
+        <ul class="social mb-0 list-inline mt-3">
+          <li class="list-inline-item">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End-->
+
+    <!-- Team item-->
+    <div class="col-xl-3 col-sm-6 mb-5">
+      <div
+        class=" rounded-4 shadow-sm py-5 px-4"
+        style="
+          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+            rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+ background-color: #F8F9FA;"
+      >
+        <img
+          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+          alt=""
+          width="100"
+          class="img-fluid rounded-circle mb-3"
+        />
+        <h5 class="mb-0">Lakhvinder Singh</h5>
+        <span class="small text-uppercase text-muted">Founder & Developer</span>
+        <ul class="social mb-0 list-inline mt-3">
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/profile.php?id=100075414802424" class="social-link"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://twitter.com/Lakhvinder_1203" class="social-link"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.instagram.com/lakhvinder_1203/" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End-->
+
+    <!-- Team item-->
+    <div class="col-xl-3 col-sm-6 mb-5">
+      <div
+        class=" rounded-4 shadow-sm py-5 px-4"
+        style="
+          box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+            rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        background-color: #F8F9FA;"
+      >
+        <img
+          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+          alt=""
+          width="100"
+          class="img-fluid rounded-circle mb-3"
+        />
+        <h5 class="mb-0">Yuvraj Bhatiya</h5>
+        <span class="small text-uppercase text-muted">Founder & Developer</span>
+        <ul class="social mb-0 list-inline mt-3">
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/yuvraj-singh-bhatiya-707939255/" class="social-link"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://username.t.me/yvrjbhatiya" class="social-link"
+              ><i class="fa-brands fa-telegram"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.instagram.com/yvrjsbhatiya/" class="social-link"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End-->
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}">
+
+<style>
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
+
+
+
+<script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+{% endblock %}
+
+ <!-- navbar starts -->
+ <div class="navbar_section">
+    <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light" style="box-shadow: 0 1px 4px 0 rgba(163, 163, 163, 0.711);">
+      <div class="container-fluid">
+        <a class="navbar-brand branding logo" href="{{url_for('home')}}">PAHADiGURU</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-pills">
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Uttarakhand</a>
+              <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='Uttarakhand History')}}">History</a></li>
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='Uttarakhand Geography')}}">Geography</a></li>
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='Uttarakhand Current')}}">Current</a></li>
+              </ul>
+            </li> -->
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">India</a>
+              <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='India History')}}">History</a></li>
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='India Geography')}}">Geography</a></li>
+                <li><a class="dropdown-item" href="{{url_for('allposts',category='India Current')}}">Current</a></li>
+              </ul>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('home')}}">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+            </li>
+            {% endif %}
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li> -->
+
+             {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+            {% endif %}
+  
+            {% if not current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+            {% endif %}
+            {% if current_user.is_authenticated and (current_user.role == 'Author' or current_user.role == 'Admin') %}
+            <li class="nav-item pl-4">
+              <a class="nav-link" href="{{url_for('addpost')}}">Add Post</a>
+            </li>
+            {% endif %}
+                
+  
+          </ul>
+  
+          <div class="nav-right">
+            <form class="d-flex">
+            <input class="form-control rounded-4" type="search" placeholder="Search" aria-label="Search">
+            <a style="font-size: large; padding: 6px 1px; color: #4f92ff;" href="#"><i class="fas fa-search"></i></a>
+            </form>
+          </div>
+  
+         
+  
+        </div>
+      </div>
+    </nav>
+  </div>
+
+ 
