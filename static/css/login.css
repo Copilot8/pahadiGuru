@@ -1,8 +1,6 @@
     .body{
         background: #f4f4f4;
         transition: all .5s;
-        margin-top: -10px;
-        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,7 +12,7 @@
         min-height: 400px;
         display:table;
         position: relative;
-        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0, 0, 0, 0.122);
     }
     .veen > div {
         display: table-cell;
@@ -25,7 +23,7 @@
     }
     .veen button{
         background: transparent;
-        background-image: linear-gradient(90deg, #3baaeb, #4f92ff);
+        background-color: #4f92ff;
         display: inline-block;
         padding: 10px 30px;
         border: 2px solid #fff;
@@ -144,7 +142,7 @@
         }
         .veen > .wrapper{
             position: relative;
-            height: auto;
+            height: 500px;
             top: 0;
             left: 0;
             width: 100%;
@@ -159,10 +157,11 @@
         }
         .splits button{
             width: 100%;
-            border-radius: 0;
+            border-radius: 25px;
             background: #505050; 
             border: 0;
             opacity: .7;
+            margin-bottom: 3%;
         }
         .splits button.active{
             opacity: 1;
@@ -190,7 +189,7 @@
 
     .css{
         background: transparent;
-        background-image: linear-gradient(90deg, #3baaeb, #4f92ff);
+        background-color: #4f92ff;
         display: inline-block;
         padding: 10px 30px;
         border: 2px solid #fff;
@@ -198,6 +197,6 @@
         background-clip: padding-box;
         position: relative;
         color: #FFF;
-        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,0.122);
         transition: all .25s;
     }

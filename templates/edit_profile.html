@@ -35,11 +35,11 @@
 {% block content %}
 <br><br><br>
 
-<div class="container rounded bg-white mt-5 mb-5" style="background-color: #f8f9fa; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+<div class="container rounded-4  mt-5 mb-5" style="background-color: #f8f9fa; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
 rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" >
-    <div class="row" style="background-color: #f8f9fa;">
+    <div class="row rounded-4" style="background-color: #f8f9fa;">
 
-        <div class="col-md-4 border-right" style="background-color: #f8f9fa;">
+        <div class="col-md-4 border-right rounded-4" style="background-color: #f8f9fa;">
 
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <div style="margin-left: -100%!important;">
@@ -50,12 +50,12 @@ rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" >
                 </a>
                 </div>
                 {% if current_user.profile_pic %}
-                <img id="img" class=" mt-5 img-thumbnail" style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+                <img id="img" class=" mt-5 img-thumbnail rounded-4" style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
                 rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" width="200px" height="200px"  
                     src="{{url_for('static', filename='images/profile_pic/'+ current_user.profile_pic)}}" alt="None">
 
                 {% else %}
-                <img id="img" class=" mt-5 img-thumbnail" style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+                <img id="img" class=" mt-5 img-thumbnail rounded-4" style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
                 rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" width="200px" height="200px" 
                     src="{{url_for('static', filename='images/profile_pic/default.jpg')}}" alt="None">
                 {% endif %}
@@ -79,19 +79,19 @@ rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" >
                             {{ form.first_name.label(class="labels") }}
 
                             {% if user.first_name == "None" %}
-                            {{form.first_name(class="form-control",placeholder="First Name")}}
+                            {{form.first_name(class="form-control",placeholder="Enter First Name")}}
                             {% else %}
-                            {{form.first_name(class="form-control",value=user.first_name)}}
+                            {{form.first_name(class="form-control",value=user.first_name,placeholder="Enter First Name")}}
                             {% endif %}
 
                         </div>
                         <div class="col-md-6">
                             {% if user.last_name == "None" %}
                             {{ form.last_name.label(class="labels") }}
-                            {{form.last_name(class="form-control",placeholder="Last Name")}}
+                            {{form.last_name(class="form-control",placeholder="Enter Last Name")}}
                             {% else %}
                             {{ form.last_name.label(class="labels") }}
-                            {{form.last_name(class="form-control",value=user.last_name)}}
+                            {{form.last_name(class="form-control",value=user.last_name,placeholder="Enter Last Name")}}
                             {% endif %}
                         </div>
                     </div>
@@ -106,10 +106,10 @@ rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" >
                         <div class="col-md-12">
                             {% if user.phone == "None" %}
                             {{ form.phone.label(class="labels") }}
-                            {{form.phone(class="form-control phone",placeholder="Mobile")}}
+                            {{form.phone(class="form-control phone",placeholder="Enter Mobile Number")}}
                             {% else %}
                             {{ form.phone.label(class="labels") }}
-                            {{form.phone(class="form-control phone",value=user.phone)}}
+                            {{form.phone(class="form-control phone",value=user.phone,placeholder="Enter Mobile Number")}}
                             {% endif %}
 
                         </div>
@@ -119,7 +119,7 @@ rgba(90, 125, 188, 0.05) 0px 0.25em 1em;" >
                             {{form.about_author(class="form-control",placeholder="About You")}}
                             {% else %}
                             {{ form.about_author.label(class="labels") }}
-                            {{form.about_author(class="form-control",value=user.about_author)}}
+                            {{form.about_author(class="form-control",value=user.about_author,placeholder="About You")}}
                             {% endif %}
                         </div>
                     </div>

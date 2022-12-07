@@ -47,7 +47,7 @@
               <tr>
                 <td>{{ post.id }}</td>
                 <td>{{ post.title|truncate(30) }}</td>
-                <td>{{ post.poster.name }}</td>
+                <td>{{ post.poster.first_name }} {{ post.poster.last_name }}</td>
                 <td>
                   <a
                     href="{{url_for('edit_post',id=post.id)}}"

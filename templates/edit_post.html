@@ -51,6 +51,10 @@ a{
             {{form.category(class="form-control my-2")}}
           </div>
           <div class="mb-3">
+            {{ form.slug.label(class="form-label font-weight-bold text-uppercase ") }}
+            {{form.slug(class="form-control my-2",value=post.slug,placeholder="Slugs...")}}
+          </div>
+          <div class="mb-3">
             {{ form.content.label(class="form-label font-weight-bold text-uppercase ") }}
             {{form.content(class="form-control textfieldarea my-2",value=post.content,placeholder="Write here...")}}
           </div>

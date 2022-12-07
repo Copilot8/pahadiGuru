@@ -15,18 +15,18 @@
 <br><br>
 
 <div class="body">
-    <div class="veen">
+    <div class="veen rounded-4">
         <div class="login-btn splits">
-            <p style="color:black">Already an user?</p>
+            <p style="color: black;">Already an user?</p>
             <button class="active">Login</button>
         </div>
         <div class="rgstr-btn splits">
-            <p style="color:black">Don't have an account?</p>
+            <p style="color: black;">Don't have an account?</p>
             <button>Register</button>
         </div>
-        <div class="wrapper">
+        <div class="wrapper rounded-4">
             <form id="login" tabindex="500" action="/login" method="post">
-                <h3>Login</h3>
+                <h3 style="font-weight: 600;">LOGIN</h3>
                 <div class="mail">
                     
                     {{form.hidden_tag()}}
@@ -53,7 +53,7 @@
             
             <form id="register" tabindex="502" method="post" action="/login">
                 <br><br>
-                <h3>Register</h3>
+                <h3 style="font-weight: 600;">REGISTER</h3>
                     {{form2.hidden_tag()}}
                 <div class="first_name">
                     {{form2.first_name}}
@@ -109,14 +109,14 @@
 	$(document).ready(function(){
 			$(".veen .rgstr-btn button").click(function(){
 				$('.veen .wrapper').addClass('move');
-				$('.body').css('background','#f4f4f4');
+				$('.body').css('background','#f8f8fa');
 				$(".veen .login-btn button").removeClass('active');
 				$(this).addClass('active');
 
 			});
 			$(".veen .login-btn button").click(function(){
 				$('.veen .wrapper').removeClass('move');
-				$('.body').css('background','#f4f4f4');
+				$('.body').css('background','#f8f8fa');
 				$(".veen .rgstr-btn button").removeClass('active');
 				$(this).addClass('active');
 			});
