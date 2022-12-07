@@ -118,6 +118,9 @@ def addpost():
         category = form.category.data
         content = form.content.data
         poster = current_user.id
+        slug = form.slug.data
+        slug = slug.replace(" ", "-")
+        print(slug)
         if request.files['image']:
             image = request.files['image']
             filename = secure_filename(image.filename)
@@ -126,7 +129,7 @@ def addpost():
             
         else:
             image_name = 'default.jpg'
-        post = Posts(title=title, category=category, content=content, poster_id=poster, image=image_name)
+        post = Posts(title=title,slug = slug, category=category, content=content, poster_id=poster, image=image_name)
         db.session.add(post)
         db.session.commit()
         flash('Post Added Successfully', 'success')
@@ -160,6 +163,10 @@ def edit_post(id):
         post.title = form.title.data
         post.category = form.category.data
         post.content = form.content.data
+        slug = form.slug.data
+        ##replace space with - in slug
+        slug = slug.replace(" ", "-")
+        post.slug = slug
         if request.files['image']:
             image = request.files['image']
             filename = secure_filename(image.filename)
@@ -684,8 +691,9 @@ def resetpassword():
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
     category = db.Column(db.String(50), nullable=False)
+    slug= db.Column(db.String(200),nullable=True)
     content = db.Column(db.String(500), nullable=False)
     date_added = db.Column(db.Date, default=date.today)
     date_time = db.Column(db.DateTime, default=datetime.utcnow)
