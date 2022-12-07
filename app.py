@@ -1,4 +1,5 @@
 import os
+import re
 import uuid as uuid
 from werkzeug.utils import secure_filename
 from datetime import date, datetime
@@ -11,10 +12,18 @@ from flask_login import (LoginManager, UserMixin, current_user, login_required,
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.exceptions import HTTPException
+
 
 from form import AddPostForm, LoginForm, UserForm , roleForm, ContactForm , editProfileForm , forgotPassword ,resetPassword
 from flask_wtf.csrf import CSRFProtect
 app = Flask(__name__)
+
+
+
+def page_not_found(e):
+    return render_template('404.html'), 404
+app.register_error_handler(404, page_not_found)
 
 
 csrf = CSRFProtect(app)
@@ -79,6 +88,42 @@ def authors():
 
 ################################################################################
 
+
+# all error pages
+
+
+@app.errorhandler(Exception)
+def unhandled_exception(e):
+    return render_template('404.html'), 500
+
+
+
+
+
+
+
+#internal server error
+
+@app.errorhandler(405)
+def method_not_allowed(e):
+    return render_template('404.html'), 405
+
+
+
+################################################################################
+
+
+@app.route("/poster_all_posts/<int:poster_id>")
+def poster_all_posts(poster_id):
+    user = Users.query.filter_by(id=poster_id).first()
+    posts = Posts.query.filter_by(poster_id=poster_id).order_by(Posts.date_time.desc()).all()
+    return render_template('poster_all_posts.html', user=user, posts=posts)
+
+
+
+
+
+
 #home page
 
 @app.route("/home")
@@ -118,9 +163,14 @@ def addpost():
         category = form.category.data
         content = form.content.data
         poster = current_user.id
+        
+        
         slug = form.slug.data
-        slug = slug.replace(" ", "-")
-        print(slug)
+        slug=slug.lower()
+        words=slug.split()
+        new_slug = "-".join(words)
+
+
         if request.files['image']:
             image = request.files['image']
             filename = secure_filename(image.filename)
@@ -129,7 +179,7 @@ def addpost():
             
         else:
             image_name = 'default.jpg'
-        post = Posts(title=title,slug = slug, category=category, content=content, poster_id=poster, image=image_name)
+        post = Posts(title=title,slug = new_slug, category=category, content=content, poster_id=poster, image=image_name)
         db.session.add(post)
         db.session.commit()
         flash('Post Added Successfully', 'success')
@@ -164,9 +214,10 @@ def edit_post(id):
         post.category = form.category.data
         post.content = form.content.data
         slug = form.slug.data
-        ##replace space with - in slug
-        slug = slug.replace(" ", "-")
-        post.slug = slug
+        slug=slug.lower()
+        words=slug.split()
+        new_slug = "-".join(words)
+        post.slug = new_slug
         if request.files['image']:
             image = request.files['image']
             filename = secure_filename(image.filename)
@@ -228,9 +279,7 @@ def edit_post(id):
 def login():
     form = LoginForm()
     form2 = UserForm()
-    print("outside loop")
     if form.validate_on_submit():
-        print("inside first loop")
         user = Users.query.filter_by(email=form.email.data).first()
         if user:
             if check_password_hash(user.password_hash, form.password.data):
@@ -249,7 +298,6 @@ def login():
                     login_user(user)
                     return redirect(url_for('home',role=role))
                 else:
-                    print(user.role)
                     flash("User not found")
                     return redirect(url_for('login'))
             else:
@@ -259,11 +307,9 @@ def login():
             flash("User not found")
             return redirect(url_for('login'))
     else:
-        print("login error")
         print(form.errors)
 
     if form2.validate_on_submit():
-        print("inside second loop")
         user = Users.query.filter_by(email=form2.email.data).first()
         if user is None:
             # Hash Password
@@ -283,7 +329,6 @@ def login():
         else:
             return redirect(url_for('login'))
     else:
-        print("register error")
         print(form2.errors)
     
     return render_template('login.html', form=form,form2=form2)
@@ -474,7 +519,6 @@ def contact():
         subject = form.subject.data
         message = form.message.data
         msg = Contact(name=name, email=email, subject=subject, message=message)
-        print(msg)
         db.session.add(msg)
         db.session.commit()
         flash('Message Send successfully')
@@ -545,14 +589,22 @@ def allposts(category):
 
 #postpage
 
-@app.route("/postpage/<int:id>")
-def postpage(id):
+@app.route("/postpage/<string:slug>")
+def postpage(slug):
+
+    # add error
 
 
 
     all_like=[]
-    posts = Posts.query.filter_by(id=id).first()
+    posts = Posts.query.filter_by(slug=slug).first()
+    id=posts.id
     # like=Likes.query.filter_by(post_id=id).all()
+
+    # get id via slug
+    
+
+
     like=Likes.query.filter_by(post_id=id).all()
     for i in like:
         all_like.append(i.liker_id)
@@ -589,12 +641,12 @@ def like(id):
     if like:
         db.session.delete(like)
         db.session.commit()
-        return redirect(url_for('postpage',id=post.id))
+        return redirect(url_for('postpage',slug=post.slug))
     else:
         new_like=Likes(liker_id=current_user.id,post_id=post.id)
         db.session.add(new_like)
         db.session.commit()
-        return redirect(url_for('postpage',id=post.id))
+        return redirect(url_for('postpage',slug=post.slug))
 
 
 ################################################################################
@@ -635,9 +687,6 @@ def resetpassword():
         email=session.get('email')
         security_answer=session.get('security_answer')
         security_question=session.get('security_question')
-        print(email)
-        print(security_answer)
-        print(security_question)
         if security_question==form.security_question.data and security_answer==form.security_answer.data:
             user=Users.query.filter_by(email=email).first()
             new_password=form.password_hash.data

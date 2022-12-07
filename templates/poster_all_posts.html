@@ -1,14 +1,18 @@
-{% extends 'base.html' %} {% block head %}
+{% extends 'base.html' %}
+{% block head %}
 <link
   rel="stylesheet"
   href="{{url_for('static',filename='css/allposts.css')}}"
 />
-{% endblock %} {% block content %}
+{% endblock %}
+{% block content %}
+<br><br><br>
 
-<br /><br /><br /><br />
+<h1>All posts by {{user.first_name}}</h1>
 
 <div class="container m-auto" style="width: 90vw;">
   <div class="row">
+    
     {% for post in posts %}
   
     <div
@@ -39,8 +43,11 @@
       </div>
       </a>
     </div>
+    <br>
+
     {% endfor %}
   </div>
+  <br>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
@@ -50,6 +57,6 @@
 
 </script>
 
-<br />
+
 
 {% endblock %}

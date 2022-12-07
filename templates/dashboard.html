@@ -82,44 +82,51 @@
         <br />
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label style="padding-left: 5px">Full Name</label>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <p style="padding-left: 5px">
               {{current_user.first_name}} {{current_user.last_name}}
             </p>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label style="padding-left: 5px">Email</label>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <p style="padding-left: 5px">{{current_user.email}}</p>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label style="padding-left: 5px">Phone</label>
           </div>
-          {% if current_user.phone %}
-          <div class="col-md-6">
-            <p style="padding-left: 5px">{{current_user.phone}}</p>
+          {% if not current_user.phone or current_user.phone == "None"  %}
+          <div class="col-md-8">
+            <p style="padding-left: 5px ; color:rgba(255, 0, 0, 0.546);">Not provided</p>
           </div>
           {% else %}
-          <div class="col-md-6">
-            <p style="padding-left: 5px; color:rgba(255, 0, 0, 0.546);">Not Provided</p>
+          <div class="col-md-8">
+            <p style="padding-left: 5px;">{{current_user.phone}}</p>
           </div>
           {% endif %}
+
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label style="padding-left: 5px">About</label>
           </div>
-          <div class="col-md-6">
-            <p style="padding-left: 5px">{{current_user.about_author}}</p>
+          {% if not current_user.about_author or current_user.about_author == "None"  %}
+          <div class="col-md-8">
+            <p style="padding-left: 5px ; color:rgba(255, 0, 0, 0.546);">Not provided</p>
           </div>
+          {% else %}
+          <div class="col-md-8">
+            <p style="padding-left: 5px;">{{current_user.about_author}}</p>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>

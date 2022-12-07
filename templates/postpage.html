@@ -150,7 +150,7 @@
 
     <div class="d-flex" style="margin-top: -2%;">
       <div class="flex-shrink-0" style="margin-left: 3%;">
-        <a href="{{url_for('dashboard')}}">
+        <a href="{{url_for('poster_all_posts',poster_id=posts.poster.id)}}">
           <img
             src="{{url_for('static', filename='images/profile_pic/'+ posts.poster.profile_pic)}}"
             class="rounded-circle"
@@ -252,7 +252,7 @@
 
       <!-- share btn -->
       <div style="display: flex; align-items: center; justify-content: center">
-        <a style="color: #4f92ff; cursor: pointer" 
+        <a onclick="share()" style="color: #4f92ff; cursor: pointer" 
           ><i
             style="font-size: x-large; padding: 0; margin-left: 5px"
             class="fas fa-share-nodes"
@@ -268,6 +268,22 @@
 
 
 
-
+<script>
+  // share this page with default share apps
+  function share() {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Share this page",
+          text: "Dekh le bhai",
+          url: window.location.href,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      alert("Share not supported");
+    }
+  }
+</script>
 {% endblock %}
 
