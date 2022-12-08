@@ -125,9 +125,9 @@
 {% endblock %} {% block content %}
 <br /><br /><br>
 
-<div class="container-sm">
+<div class="container-sm ">
   <div
-    class="card mt-5 ml-4 rounded-4"
+    class="card mt-5 ml-4 rounded-4 m-auto"
     style="
       box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
         rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
@@ -141,28 +141,29 @@
     </div>
     <img
       src="{{url_for('static', filename='images/feature_photo/'+ posts.image)}}"
-      class="w-100"
-      height="400"
+      class="card_img"
       style="padding: 0 20px;"
     />
     <br />
     <br />
 
     <div class="d-flex" style="margin-top: -2%;">
-      <div class="flex-shrink-0" style="margin-left: 3%;">
+      <div class="flex-shrink-0" style="margin-left: 4%;">
         <a href="{{url_for('poster_all_posts',poster_id=posts.poster.id)}}">
           <img
             src="{{url_for('static', filename='images/profile_pic/'+ posts.poster.profile_pic)}}"
             class="rounded-circle"
-            width="80"
-            height="80"
+            width="70"
+            height="70"
           />
         </a>
       </div>
 
       <div class="flex-grow my-3" style="margin-left: 2%">
-        <h5>Posted by: {{posts.poster.first_name}} {{posts.poster.last_name}}</h5>
-        <small class="text-muted">Posted on: {{posts.date_added}}</small>
+        <a href="{{url_for('poster_all_posts',poster_id=posts.poster.id)}}" style="color: black; text-decoration: none;">
+          <h6>Posted by: {{posts.poster.first_name}} {{posts.poster.last_name}}</h6>
+          <small class="text-muted">Posted on: {{posts.date_added}}</small>
+        </a>
       </div>
     </div>
 
@@ -269,19 +270,22 @@
 
 
 <script>
+  let title = document.querySelector(".card-title");
+  let files = document.querySelector(".card_img");
+ 
   // share this page with default share apps
   function share() {
     if (navigator.share) {
       navigator
         .share({
-          title: "Share this page",
-          text: "Dekh le bhai",
-          url: window.location.href,
+          title: title.innerText,
+          text: "Check out this post on Tech Blog",
+          url: files.src,
         })
         .then(() => console.log("Successful share"))
         .catch((error) => console.log("Error sharing", error));
     } else {
-      alert("Share not supported");
+      alert("Share is not supported");
     }
   }
 </script>

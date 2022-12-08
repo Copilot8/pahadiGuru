@@ -113,6 +113,8 @@ def method_not_allowed(e):
 ################################################################################
 
 
+#poster_all posts
+
 @app.route("/poster_all_posts/<int:poster_id>")
 def poster_all_posts(poster_id):
     user = Users.query.filter_by(id=poster_id).first()
@@ -579,7 +581,8 @@ def edit_profile(id):
 def allposts(category):
     posts = Posts.query.filter_by(category=category).all()
     posts.reverse()
-    return render_template('allposts.html', posts=posts,category=category)
+    searchbar = 1
+    return render_template('allposts.html', posts=posts,category=category,searchbar=searchbar)
 
 # @app.route("/allposts")
 # def allposts():
@@ -589,8 +592,8 @@ def allposts(category):
 
 #postpage
 
-@app.route("/postpage/<string:slug>")
-def postpage(slug):
+@app.route("/post/<string:slug>")
+def post(slug):
 
     # add error
 
@@ -806,4 +809,4 @@ class Views(db.Model):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

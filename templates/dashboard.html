@@ -38,26 +38,25 @@
       <div class="profile-img mb-5 ">
         {% if current_user.profile_pic %}
         <img
-          class="img-thumbnail mt-5 rounded-4"
+          class="mt-5 rounded-4 card_img"
           style="
             box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
               rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
           "
-          width="200px"
-          height="200px"
+          width="200!important"
+          height="200!important"
           src="{{url_for('static', filename='images/profile_pic/'+ current_user.profile_pic)}}"
           alt="None"
         />
 
         {% else %}
         <img
-          class="img-thumbnail mt-5 rounded-4"
+          class="mt-5 rounded-4 card_img"
           style="
             box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
               rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
           "
-          width="200px"
-          height="200px"
+
           src="{{url_for('static', filename='images/profile_pic/default.jpg')}}"
           alt="None"
         />

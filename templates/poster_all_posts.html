@@ -1,20 +1,65 @@
-{% extends 'base.html' %}
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <link
   rel="stylesheet"
   href="{{url_for('static',filename='css/allposts.css')}}"
 />
-{% endblock %}
-{% block content %}
-<br><br><br>
+{% endblock %} {% block content %}
+<br /><br /><br /><br>
 
-<h1>All posts by {{user.first_name}}</h1>
 
-<div class="container m-auto" style="width: 90vw;">
+<div class="container m-auto" style="width: 90vw">
+<div
+  class="card col-md-12 p-3 rounded-4"
+  style="
+    background-color: #86b1f759;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+      rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  "
+>
+    <div class="row">
+      <div class="col-md-3">
+        <img
+            src="{{url_for('static', filename='images/profile_pic/'+ user.profile_pic)}}"
+            class="rounded-circle img-thumbnail shadow-sm my-1"
+            width="120"
+            height="120"
+            style="margin-left: 30%;"
+          />
+      </div>
+      <div class="col-md-8 my-3">
+        <div class="card-block">
+          <h6 class="author_name" style="font-size: 1.5rem; font-weight: 600;">{{user.first_name}} {{user.last_name}}</h6>
+          <p class="author_bio my-1 text-muted">
+            {{user.email}}
+          </p>
+          <ul class="social mb-0 list-inline mt-2">
+            <li class="list-inline-item">
+              <a href="#" class="social-link" style="font-size: 1.2rem; color: rgba(0, 0, 0, 0.721);"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="social-link" style="font-size: 1.2rem; color: rgba(0, 0, 0, 0.721);"
+                ><i class="fa-brands fa-twitter"></i
+              ></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="social-link" style="font-size: 1.2rem; color: rgba(0, 0, 0, 0.721);"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<br>
+
+<div class="container m-auto" style="width: 90vw">
   <div class="row">
-    
     {% for post in posts %}
-  
+
     <div
       class="card col-md-12 p-3 rounded-4"
       style="
@@ -22,39 +67,46 @@
         box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
           rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
       "
+    >
+      <a
+        href="{{url_for('post',slug=post.slug)}}"
+        style="
+          text-decoration: none;
+          color: #000 !important;
+          text-align: justify;
+        "
       >
-      <a href="{{url_for('postpage',slug=post.slug)}}" style="text-decoration: none; color: #000!important; text-align: justify;">
-      <div class="row">
-        <div class="col-md-4">
-          <img
-            class="w-100"
-            height="200"
-            src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}"
-          />
-        </div>
-        <div class="col-md-8 my-3">
-          <div class="card-block">
-            <h6 class="card-title">{{post.title}}</h6>
-            <p class="card-text my-3">
-              {{post.content|safe|truncate(300)}}
-            </p>
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              class="w-100 card-img"
+              height="200"
+              src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}"
+            />
+          </div>
+          <div class="col-md-8 my-3">
+            <div class="card-block">
+              <h6 class="card-title">{{post.title}}</h6>
+              <p class="card-text my-3">{{post.content|safe|truncate(300)}}</p>
+            </div>
           </div>
         </div>
-      </div>
       </a>
     </div>
-    <br>
+    <br />
 
     {% endfor %}
   </div>
-  <br>
+  <br />
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"
+></script>
 <script>
-  $('p img').addClass('img-fluid');
-
-
+  $("p img").addClass("img-fluid");
 </script>
 
 

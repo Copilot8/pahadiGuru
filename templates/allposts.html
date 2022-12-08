@@ -3,6 +3,7 @@
   rel="stylesheet"
   href="{{url_for('static',filename='css/allposts.css')}}"
 />
+
 {% endblock %} {% block content %}
 
 <br /><br /><br /><br />
@@ -19,11 +20,11 @@
           rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
       "
       >
-      <a href="{{url_for('postpage',slug=post.slug)}}" style="text-decoration: none; color: #000!important; text-align: justify;">
+      <a href="{{url_for('post',slug=post.slug)}}" style="text-decoration: none; color: #000!important; text-align: justify;">
       <div class="row">
         <div class="col-md-4">
           <img
-            class="w-100"
+            class="w-100 card_img"
             height="200"
             src="{{url_for('static', filename='images/feature_photo/'+ post.image)}}"
           />
@@ -32,7 +33,7 @@
           <div class="card-block">
             <h6 class="card-title">{{post.title}}</h6>
             <p class="card-text my-3">
-              {{post.content|safe|truncate(300)}}
+              {{post.content|safe|truncate(150)}}
             </p>
           </div>
         </div>
