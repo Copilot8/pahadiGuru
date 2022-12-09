@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% block head %}
+<script>
+    // remove footer
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('footer').remove();
+    });
+
+    // remove navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('nav').remove();
+    });
+</script>
+
+<style>
+    body {
+        background-color: #f1f1f1;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        color: #333;
+        line-height: 1.5;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .error {
+        margin-top: 100px;
+        text-align: center;
+    }
+    .error h1 {
+        font-size: 10rem;
+        margin-bottom: 20px;
+    }
+    .error p {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .error a {
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #333;
+        padding-bottom: 2px;
+    }
+    .error a:hover {
+        color: #444;
+        border-bottom: 1px solid #444;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="error">
+            <h1>404</h1>
+            <p>Page not found!</p>
+            <a href="{{url_for('home')}}">Go to home page</a>
+        </div>
+    </div>
+
+
+{% endblock %}

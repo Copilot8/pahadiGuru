@@ -644,12 +644,12 @@ def like(id):
     if like:
         db.session.delete(like)
         db.session.commit()
-        return redirect(url_for('postpage',slug=post.slug))
+        return redirect(url_for('post',slug=post.slug))
     else:
         new_like=Likes(liker_id=current_user.id,post_id=post.id)
         db.session.add(new_like)
         db.session.commit()
-        return redirect(url_for('postpage',slug=post.slug))
+        return redirect(url_for('post',slug=post.slug))
 
 
 ################################################################################

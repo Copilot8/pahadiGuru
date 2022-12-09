@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/contact.css')}}">
+{% endblock %}
+ 
+{% block content %}
+<br>
+
+<div>
+  <div class="contact-form-wrapper d-flex justify-content-center rounded-4">
+    
+    <form class="contact-form rounded-4 w-auto" method="post">
+      <p class="text-muted">Facing any issue? Feel free to <b>contact us</b>.</p>
+      <br>
+        <div class="mb-3">
+          {{form.hidden_tag()}}
+          {{ form.yourname.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.yourname(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.youremail.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.youremail(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.subject.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.subject(class="form-control")}}
+        </div>
+        <div class="mb-3">
+          {{ form.message.label(class="form-label font-weight-bold text-uppercase") }}
+          {{form.message(class="form-control")}}
+        </div>
+        <center>
+          {{form.submit(class="btn btn-primary thebtn" )}}
+      </center>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
