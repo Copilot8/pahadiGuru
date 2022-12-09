@@ -270,20 +270,23 @@
 
 
 <script>
+  // share this page with image
   let title = document.querySelector(".card-title");
   let files = document.querySelector(".card_img");
  
-  // share this page with default share apps
+  
   function share() {
     if (navigator.share) {
       navigator
         .share({
-          title: title.innerText,
-          text: "Check out this post on Tech Blog",
-          url: files.src,
+          title: title.textContent,
+          text: "Check out this post: ",
+          url: window.location.href,
         })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
+        .then(() => {
+          console.log("Thanks for sharing!");
+        })
+        .catch(console.error);
     } else {
       alert("Share is not supported");
     }
