@@ -61,8 +61,14 @@
             <a style="font-size: large; padding: 6px 1px; color: #4f92ff;" href="#"><i class="fas fa-search"></i></a>
             </form>
           </div>
+          {% else %}
+          <div class="nav-right" style="visibility: hidden;">
+            <form class="d-flex">
+            <input class="form-control rounded-4" type="search" placeholder="Search" aria-label="Search">
+            <a style="font-size: large; padding: 6px 1px; color: #4f92ff;" href="#"><i class="fas fa-search"></i></a>
+            </form>
+          </div>
           {% endif %}
-  
          
   
         </div>
